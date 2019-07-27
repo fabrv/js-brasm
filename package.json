@@ -1,0 +1,24 @@
+{
+  "name": "js-brasm",
+  "version": "1.0.0",
+  "description": "Assembler compiler to Brainfuck made in NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabrv/js-brasm.git"
+  },
+  "keywords": [
+    "brainfuck",
+    "javascript",
+    "nodejs"
+  ],
+  "author": "Fabrizzio Rivera",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fabrv/js-brasm/issues"
+  },
+  "homepage": "https://github.com/fabrv/js-brasm#readme"
+}
