@@ -15,3 +15,6 @@ npm i
 ```bash
 npm start [program code]
 ```
+
+## Config files
+1. `tokensRegex.json`, includes all the tokens in Regex, the main array contains the 5 problems from LAB#01
