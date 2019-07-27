@@ -11,10 +11,15 @@ export class Lexer {
     for (let i = 0; i < stream.length; i++) {
       word += stream[i]
       for (let o = 0; o < this.rules.length; o++) {
-        if (word == rule[o]) {
+        
+        let re = new RegExp(this.rules[o].regex)
+
+        if (re.test(word)) {
+          console.log(word)
           tokens.push(word)
-          word = ''
+          word = ''          
         }
+
       }
     }
 
