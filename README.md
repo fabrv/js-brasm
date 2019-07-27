@@ -1,4 +1,17 @@
 # Brasm
-Brasm is one more Assembler language that compiles to Brainfuck.
+Brasm is one more compiler.
 
-Hopefully the language will grow to a proper version of [Brasic](https://github.com/fabrv/brasic).
+## Usage
+1. Clone the repo
+```bash
+git clone https://github.com/fabrv/js-brasm.git
+cd js-brasm
+```
+2. Install dependencies
+```bash
+npm i
+```
+3. Start program
+```bash
+npm start [program code]
+```
