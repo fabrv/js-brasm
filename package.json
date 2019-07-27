@@ -4,7 +4,8 @@
   "description": "Assembler compiler to Brainfuck made in NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node -r esm index.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/fabrv/js-brasm/issues"
   },
-  "homepage": "https://github.com/fabrv/js-brasm#readme"
+  "homepage": "https://github.com/fabrv/js-brasm#readme",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
 }

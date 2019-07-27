@@ -1,30 +1,30 @@
 [
   [
     {
-      "regex": "\\s*"
+      "regex": "^\\s$"
     }  
   ],
   [
     {
-      "regex": "c"
+      "regex": "^c$"
     }
   ],
   [
     {
-      "regex": "ab*"
+      "regex": "^a{2}b*$"
     },
     {
-      "regex": "cd"
+      "regex": "^cd$"
     }
   ],
   [
     {
-      "regex": "[a-z]|[A-Z]"
+      "regex": "^c{3}|a{2}$"
     }
   ],
   [
     {
-      "regex": "R*"
+      "regex": "^R*$"
     }
   ]
 ]
