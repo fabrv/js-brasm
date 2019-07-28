@@ -22,7 +22,7 @@ export class Lexer {
         }
       }
     }
-    console.log(tokens)
+    
     return tokens
   }
 }
