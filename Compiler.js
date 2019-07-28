@@ -13,7 +13,7 @@ export class Lexer {
       for (let o = 0; o < this.rules.length; o++) {
         let re = new RegExp(this.rules[o].regex)
         if (re.test(word)) {
-          while (re.test(word + stream[i + 1])) {
+          while (re.test(word + stream[i + 1]) && i < stream.length - 1) {
             i += 1
             word += stream[i]
           }
@@ -22,7 +22,7 @@ export class Lexer {
         }
       }
     }
-
+    console.log(tokens)
     return tokens
   }
 }
