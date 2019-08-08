@@ -9,17 +9,26 @@ export class Lexer {
     let tokens = []
     let word = ''
     for (let i = 0; i < stream.length; i++) {
-      word += stream[i]
       for (let o = 0; o < this.rules.length; o++) {
-        let re = new RegExp(this.rules[o].regex)
+        valid = false
+        if (stream[i] == this.rules[o].regex[i]) {
+          valid = true
+
+          while (valid = true) {
+            
+          }
+        }
+        console.log(this.rules[o]);
+
+        /*let re = new RegExp(this.rules[o].regex)
         if (re.test(word)) {
           while (re.test(word + stream[i + 1]) && i < stream.length - 1) {
             i += 1
             word += stream[i]
           }
-          tokens.push(word)
+          tokens.push({'value': word, 'type': this.rules[o].description})
           word = ''
-        }
+        }*/
       }
     }
     
