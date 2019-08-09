@@ -12,7 +12,7 @@
     "description": "bracket"
   },
   {
-    "regex": "Program",
+    "regex": "p+",
     "description": "identifier"
   },
   {

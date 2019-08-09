@@ -7,28 +7,30 @@ export class Lexer {
   tokenize(){
     const stream = this.input
     let tokens = []
-    let word = ''
     for (let i = 0; i < stream.length; i++) {
-      for (let o = 0; o < this.rules.length; o++) {
-        valid = false
-        if (stream[i] == this.rules[o].regex[i]) {
-          valid = true
+      for (let o = 0; o < this.rules.length; o++) {        
+        
+        let position = 0
 
-          while (valid = true) {
-            
+        if (stream[i] == this.rules[o].regex[position]) {
+          let word = stream[i]
+          
+          let back = 0
+          position ++
+          if (this.rules[o].regex[position] == '+') back ++
+          console.log(stream[i + position], this.rules[o].regex[position - back])
+          while(stream[i + position] == this.rules[o].regex[position - back] && position - back <= this.rules[o].regex.length && i + position - back < stream.length) {
+            word += stream[i + position]
+            position ++
+
+            if (this.rules[o].regex[position] == '+') back ++
+            console.log(position, back, position - back)
+          }
+          if (position == this.rules[o].regex.length) {
+            i += position
+            tokens.push({'value': word, 'type': this.rules[o].description})
           }
         }
-        console.log(this.rules[o]);
-
-        /*let re = new RegExp(this.rules[o].regex)
-        if (re.test(word)) {
-          while (re.test(word + stream[i + 1]) && i < stream.length - 1) {
-            i += 1
-            word += stream[i]
-          }
-          tokens.push({'value': word, 'type': this.rules[o].description})
-          word = ''
-        }*/
       }
     }
     
