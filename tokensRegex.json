@@ -8,8 +8,16 @@
     "description": "declaration"
   },
   {
+    "regex": "func",
+    "description": "function"
+  },
+  {
     "regex": "package",
     "description": "package"
+  },
+  {
+    "regex": "int",
+    "description": "int_type"
   },
   {
     "regex": "{",
@@ -18,6 +26,14 @@
   {
     "regex": "}",
     "description": "bracket"
+  },
+  {
+    "regex": "(",
+    "description": "lparen"
+  },
+  {
+    "regex": ")",
+    "description": "rparen"
   },
   {
     "regex": "Program",
@@ -93,5 +109,9 @@
   {
     "regex": ">=",
     "description": "rel_op"
+  },
+  {
+    "regex": " ",
+    "description": "whitespace"
   }
 ]

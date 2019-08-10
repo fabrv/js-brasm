@@ -24,20 +24,23 @@ export class Lexer {
 
             if (regex[position - back] == '+') {
               back ++
-              lastPos = position
+              if (lastPos == 0) {
+                lastPos = position
+              }
             }
 
             inRange = this.validateChar(stream[i + position], regex[position - back])
 
             if (!inRange && regex[position - back + 1] == '+') {
-              position = lastPos + 2
+              back -= 2
               inRange = this.validateChar(stream[i + position], regex[position - back])
             }
           }
-          console.log(word, regex[position - back], regex.length)
-          if (regex[position - back] === undefined) {
-            i = i + position
+          //console.log(word, regex[position - back], regex.length)
+          if (regex[position - back + 1] === undefined) {
+            i = i + position - 1
             tokens.push({'value': word, 'description': this.rules[o].description})
+            break;
           }
         }
       }
