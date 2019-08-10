@@ -1,3 +1,4 @@
+import { Regex } from './Regex'
 export class Lexer {
   constructor(rules, input){
     this.rules = rules
@@ -8,32 +9,39 @@ export class Lexer {
     const stream = this.input
     let tokens = []
     for (let i = 0; i < stream.length; i++) {
-      for (let o = 0; o < this.rules.length; o++) {        
-        
+      for (let o = 0; o < this.rules.length; o++) {
         let position = 0
+        let back = 0
+        const regex = new Regex(this.rules[o].regex).lex()
 
-        if (stream[i] == this.rules[o].regex[position]) {
-          let word = stream[i]
-          
-          let back = 0
-          position ++
-          if (this.rules[o].regex[position] == '+') back ++
-          console.log(stream[i + position], this.rules[o].regex[position - back])
-          while(stream[i + position] == this.rules[o].regex[position - back] && position - back <= this.rules[o].regex.length && i + position - back < stream.length) {
+        let inRange = this.validateChar(stream[i], regex[position])
+        let word = ''
+        if (inRange) {
+          while (inRange) {
             word += stream[i + position]
             position ++
 
-            if (this.rules[o].regex[position] == '+') back ++
-            console.log(position, back, position - back)
+            if (regex[position - back] == '+') back ++
+
+            inRange = this.validateChar(stream[i + position], regex[position - back])
           }
-          if (position == this.rules[o].regex.length) {
-            i += position
-            tokens.push({'value': word, 'type': this.rules[o].description})
-          }
+          i = i + position
+          tokens.push({'value': word, 'description': this.rules[o].description})
         }
       }
     }
     
     return tokens
+  }
+
+  validateChar (char, string) {
+    let inRange = false
+    for (let c in string) {
+      let val = string[c]
+      if (val == char) {
+        inRange = true
+      }
+    }
+    return inRange
   }
 }
