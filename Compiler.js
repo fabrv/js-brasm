@@ -25,6 +25,7 @@ export class Lexer {
 
             inRange = this.validateChar(stream[i + position], regex[position - back])
           }
+          console.log(word, i, position)
           i = i + position
           tokens.push({'value': word, 'description': this.rules[o].description})
         }

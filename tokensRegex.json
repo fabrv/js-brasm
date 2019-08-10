@@ -12,11 +12,31 @@
     "description": "bracket"
   },
   {
-    "regex": "p+",
-    "description": "identifier"
+    "regex": "Program",
+    "description": "program"
   },
   {
     "regex": "[a-zA-Z]+",
     "description": "identifier"
+  },
+  {
+    "regex": "[0-9]+",
+    "description": "digit"
+  },
+  {
+    "regex": "[0-9a-zA-Z]",
+    "description": "alpha_num"
+  },
+  {
+    "regex": "true",
+    "description": "bool_literal"
+  },
+  {
+    "regex": "false",
+    "description": "bool_literal"
+  },
+  {
+    "regex": "\"[ -ÿ]+\"",
+    "description": "string_literal"
   }
 ]
