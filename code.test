@@ -1,3 +1,1 @@
-class Program {
-  var test = "test"
-}
+var test = value + 34

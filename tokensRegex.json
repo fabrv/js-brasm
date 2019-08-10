@@ -4,6 +4,10 @@
     "description": "class"
   },
   {
+    "regex": "var",
+    "description": "declaration"
+  },
+  {
     "regex": "{",
     "description": "bracket"
   },
@@ -38,5 +42,52 @@
   {
     "regex": "\"[ -ÿ]+\"",
     "description": "string_literal"
+  },
+  {
+    "regex": "==",
+    "description": "eq_op"
+  },
+  {
+    "regex": "!=",
+    "description": "eq_op"
+  },
+  {
+    "regex": "+",
+    "description": "arith_op"
+  },
+  {
+    "regex": "-",
+    "description": "arith_op"
+  },
+  {
+    "regex": "*",
+    "description": "arith_op"
+  },
+  {
+    "regex": "/",
+    "description": "arith_op"
+  },
+  {
+    "regex": "%",
+    "description": "arith_op"
+  },
+  {
+    "regex": "<",
+    "description": "rel_op"
+  }
+  ,
+  {
+    "regex": ">",
+    "description": "rel_op"
+  }
+  ,
+  {
+    "regex": "<=",
+    "description": "rel_op"
+  }
+  ,
+  {
+    "regex": ">=",
+    "description": "rel_op"
   }
 ]
