@@ -48,7 +48,7 @@
     "description": "digit"
   },
   {
-    "regex": "[0-9a-zA-Z]",
+    "regex": "[0-9a-zA-Z]+",
     "description": "alpha_num"
   },
   {
@@ -60,7 +60,7 @@
     "description": "bool_literal"
   },
   {
-    "regex": "\"[ -ÿ]+\"",
+    "regex": "\"[ -!#-~]+\"",
     "description": "string_literal"
   },
   {
