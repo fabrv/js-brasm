@@ -8,6 +8,10 @@
     "description": "declaration"
   },
   {
+    "regex": "package",
+    "description": "package"
+  },
+  {
     "regex": "{",
     "description": "bracket"
   },

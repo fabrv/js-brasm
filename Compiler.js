@@ -16,18 +16,29 @@ export class Lexer {
 
         let inRange = this.validateChar(stream[i], regex[position])
         let word = ''
+        let lastPos = 0
         if (inRange) {
           while (inRange) {
             word += stream[i + position]
             position ++
 
-            if (regex[position - back] == '+') back ++
+            if (regex[position - back] == '+') {
+              back ++
+              lastPos = position
+            }
 
             inRange = this.validateChar(stream[i + position], regex[position - back])
+
+            if (!inRange && regex[position - back + 1] == '+') {
+              position = lastPos + 2
+              inRange = this.validateChar(stream[i + position], regex[position - back])
+            }
           }
-          console.log(word, i, position)
-          i = i + position
-          tokens.push({'value': word, 'description': this.rules[o].description})
+          console.log(word, regex[position - back], regex.length)
+          if (regex[position - back] === undefined) {
+            i = i + position
+            tokens.push({'value': word, 'description': this.rules[o].description})
+          }
         }
       }
     }
