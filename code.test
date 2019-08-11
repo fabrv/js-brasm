@@ -1,1 +1,5 @@
-package Test { func main() int { x = "test" } }
+// this is a comment
+package Program {
+  var x int = 0xEAD
+  if (let i < 0) {}
+}

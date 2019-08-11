@@ -9,6 +9,7 @@ export class Lexer {
     const stream = this.input
     let tokens = []
     for (let i = 0; i < stream.length; i++) {
+      let added = false
       for (let o = 0; o < this.rules.length; o++) {
         let position = 0
         let back = 0
@@ -36,13 +37,16 @@ export class Lexer {
               inRange = this.validateChar(stream[i + position], regex[position - back])
             }
           }
-          //console.log(word, regex[position - back], regex.length)
-          if (regex[position - back + 1] === undefined) {
+          if (position - back >= regex.length) {
             i = i + position - 1
             tokens.push({'value': word, 'description': this.rules[o].description})
+            added = true
             break;
           }
         }
+      }
+      if (!added) {
+        throw new Error(`Syntax error in position ${i} - ${stream[i - 2]}${stream[i - 1]}${stream[i]}${stream[i + 1]}${stream[i + 2]}`)
       }
     }
     

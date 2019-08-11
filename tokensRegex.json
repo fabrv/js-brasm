@@ -16,7 +16,7 @@
     "description": "package"
   },
   {
-    "regex": "int",
+    "regex": "int ",
     "description": "int_type"
   },
   {
@@ -40,16 +40,8 @@
     "description": "program"
   },
   {
-    "regex": "[a-zA-Z]+",
+    "regex": "[a-zA-Z_]+",
     "description": "identifier"
-  },
-  {
-    "regex": "[0-9]+",
-    "description": "digit"
-  },
-  {
-    "regex": "[0-9a-zA-Z]+",
-    "description": "alpha_num"
   },
   {
     "regex": "true",
@@ -60,8 +52,24 @@
     "description": "bool_literal"
   },
   {
+    "regex": "0x[0-9a-fA-F]+",
+    "description": "int_lit"
+  },
+  {
+    "regex": "[0-9]+",
+    "description": "int_lit"
+  },
+  {
     "regex": "\"[ -!#-~]+\"",
     "description": "string_literal"
+  },
+  {
+    "regex": "'[ -!#-~]'",
+    "description": "char_literal"
+  },
+  {
+    "regex": "//[ -!#-~\r]+\n",
+    "description": "comment"
   },
   {
     "regex": "==",
@@ -70,6 +78,10 @@
   {
     "regex": "!=",
     "description": "eq_op"
+  },
+  {
+    "regex": "=",
+    "description": "assign"
   },
   {
     "regex": "+",
@@ -112,6 +124,22 @@
   },
   {
     "regex": " ",
+    "description": "whitespace"
+  },
+  {
+    "regex": "\n",
+    "description": "whitespace"
+  },
+  {
+    "regex": "\r",
+    "description": "whitespace"
+  },
+  {
+    "regex": "\t",
+    "description": "whitespace"
+  },
+  {
+    "regex": "\f",
     "description": "whitespace"
   }
 ]
