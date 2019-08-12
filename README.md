@@ -13,7 +13,7 @@ npm i
 ```
 3. Start program
 ```bash
-npm start [source file]
+npm start [any source file | code.js]
 ```
 
 ## Config files

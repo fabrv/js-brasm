@@ -46,7 +46,7 @@ export class Lexer {
         }
       }
       if (!added) {
-        throw new Error(`Syntax error in position ${i} - ${stream[i - 2]}${stream[i - 1]}${stream[i]}${stream[i + 1]}${stream[i + 2]}`)
+        throw new Error(`Uncaught syntax error: Invalid or unexpected token in position ${i} - ${stream[i - 2]}${stream[i - 1]}${stream[i]}${stream[i + 1]}${stream[i + 2]}`)
       }
     }
     
