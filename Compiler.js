@@ -5,7 +5,7 @@ export class Lexer {
     this.input = input
   }
 
-  tokenize(){
+  tokenize () {
     const stream = this.input
     let tokens = []
     for (let i = 0; i < stream.length; i++) {
@@ -51,6 +51,16 @@ export class Lexer {
     }
     
     return tokens
+  }
+
+  parser (tokens) {
+    let current = 0
+    function walk () {
+      let token = tokens[current]
+      if ()
+    }
+
+    walk()
   }
 
   validateChar (char, string) {

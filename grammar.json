@@ -1,0 +1,30 @@
+[
+  {
+    "description": "callout_arg",
+    "grammar": "<expr>"
+  },
+  {
+    "description": "callout_arg",
+    "grammar": "string_literal"
+  },
+  {
+    "description": "expr",
+    "grammar": "<location>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<method_call>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<literal>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<expr><bin_op><expr>"
+  },
+  {
+    "description": "expr",
+    "grammar": "not<expr>"
+  }
+]

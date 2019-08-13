@@ -7,4 +7,6 @@ const code = fs.readFileSync(path,'utf8')
 const rules = JSON.parse(fs.readFileSync('tokensRegex.json', 'utf8'))
 
 const Lex = new Lexer(rules, code)
-console.log(Lex.tokenize())
+const tokens = Lex.tokenize()
+console.log(tokens)
+Lex.parser(tokens)
