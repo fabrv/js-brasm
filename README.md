@@ -17,4 +17,5 @@ npm start [any source file | code.js]
 ```
 
 ## Config files
-1. `tokensRegex.json`, includes all the tokens in Regex, the main array contains the 5 problems from LAB#01
+1. `tokensRegex.json`, includes all the tokens in Regex
+2. `grammar.json`, includes the grammar rules
