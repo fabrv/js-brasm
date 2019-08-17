@@ -1,6 +1,7 @@
 import { Regex } from './Regex'
+import { Grammar } from './Grammar'
 export class Lexer {
-  constructor(rules, grammar, input){
+  constructor(rules, input){
     this.rules = rules
     this.input = input
   }
@@ -66,17 +67,17 @@ export class Lexer {
 }
 
 export class Parser {
-  constructor (rules, tokens) {
-    this.rules = rules
+  constructor (grammar, tokens) {
+    this.grammar = grammar
     this.tokens = tokens
     this.current = 0
   }
   
   walk () {
-    let token = tokens[this.current]
-
-    for (let i = 0; i < this.tokens; i ++) {
-      
+    let token = this.tokens[this.current]
+    for (let i = 0; i < this.grammar.length; i++) {
+      const rule = new Grammar(this.grammar[i].grammar).lex()
+      console.log(rule)
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Lexer } from "./Compiler";
+import { Lexer, Parser } from "./Compiler";
 import * as fs from 'fs'
 
 const path = `${process.cwd()}\\${process.argv[2]}`
@@ -9,5 +9,8 @@ const grammar = JSON.parse(fs.readFileSync('grammar.json', 'utf8'))
 
 const Lex = new Lexer(rules, code)
 const tokens = Lex.tokenize()
+
 console.log(tokens)
-Lex.parser(tokens)
+
+const Parse = new Parser(grammar, tokens)
+console.log(Parse.walk())
