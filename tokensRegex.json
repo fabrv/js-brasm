@@ -12,6 +12,10 @@
     "description": "function"
   },
   {
+    "regex": "callout",
+    "description": "callout"
+  },
+  {
     "regex": "package",
     "description": "package"
   },
@@ -46,6 +50,14 @@
   {
     "regex": ")",
     "description": "rparen"
+  },
+  {
+    "regex": "[[]",
+    "description": "lbracket"
+  },
+  {
+    "regex": "]",
+    "description": "rbracket"
   },
   {
     "regex": "Program",

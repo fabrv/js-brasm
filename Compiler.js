@@ -1,6 +1,6 @@
 import { Regex } from './Regex'
 export class Lexer {
-  constructor(rules, input){
+  constructor(rules, grammar, input){
     this.rules = rules
     this.input = input
   }
@@ -53,16 +53,6 @@ export class Lexer {
     return tokens
   }
 
-  parser (tokens) {
-    let current = 0
-    function walk () {
-      let token = tokens[current]
-      if ()
-    }
-
-    walk()
-  }
-
   validateChar (char, string) {
     let inRange = false
     for (let c in string) {
@@ -72,5 +62,21 @@ export class Lexer {
       }
     }
     return inRange
+  }
+}
+
+export class Parser {
+  constructor (rules, tokens) {
+    this.rules = rules
+    this.tokens = tokens
+    this.current = 0
+  }
+  
+  walk () {
+    let token = tokens[this.current]
+
+    for (let i = 0; i < this.tokens; i ++) {
+      
+    }
   }
 }

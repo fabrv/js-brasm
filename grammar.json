@@ -21,10 +21,26 @@
   },
   {
     "description": "expr",
-    "grammar": "<expr><bin_op><expr>"
+    "grammar": "<expr><arith_op><expr>"
   },
   {
     "description": "expr",
-    "grammar": "not<expr>"
+    "grammar": "not <expr>"
+  },
+  {
+    "description": "location",
+    "grammar": "id"
+  },
+  {
+    "description": "location",
+    "grammar": "id lbracket <expr> rbracket"
+  },
+  {
+    "description": "method_name",
+    "grammar": "id"
+  },
+  {
+    "description": "method_call",
+    "grammar": "<method_name> lbracket <expr>+ rbracket"
   }
 ]
