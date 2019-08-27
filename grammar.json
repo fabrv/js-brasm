@@ -29,11 +29,11 @@
   },
   {
     "description": "location",
-    "grammar": "id"
+    "grammar": "id lbracket <expr> rbracket"
   },
   {
     "description": "location",
-    "grammar": "id lbracket <expr> rbracket"
+    "grammar": "id"
   },
   {
     "description": "method_name",

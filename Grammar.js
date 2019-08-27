@@ -1,31 +1,73 @@
+import { Regex } from './Regex'
+
 export class Grammar {
   constructor (pattern) {
     this.pattern = pattern
+    this.rules = [
+      {
+        "regex": "<[a-zA-Z_]+>",
+        "description": false
+      },
+      {
+        "regex": "[a-zA-Z_]+",
+        "description": true
+      }
+    ]
   }
 
   lex () {
+    const stream = this.pattern
     let tokens = []
-    let token = ''
-    for (let i = 0; i < this.pattern.length; i ++) {
-      const char = this.pattern[i]
-      token += char
-      if (token != '' && (char == '<' || char == ' ' || i == this.pattern.length - 1)) {
-        if (char == '<' || char == ' ') {
-          token = token.substring(0, token.length - 1)
+    for (let i = 0; i < stream.length; i++) {
+      let added = false
+      for (let o = 0; o < this.rules.length; o++) {
+        let position = 0
+        let back = 0
+        const regex = new Regex(this.rules[o].regex).lex()
+
+        let inRange = this.validateChar(stream[i], regex[position])
+        let word = ''
+        let lastPos = 0
+        if (inRange) {
+          while (inRange) {
+            word += stream[i + position]
+            position ++
+
+            if (regex[position - back] == '+') {
+              back ++
+              if (lastPos == 0) {
+                lastPos = position
+              }
+            }
+
+            inRange = this.validateChar(stream[i + position], regex[position - back])
+
+            if (!inRange && regex[position - back + 1] == '+') {
+              back -= 2
+              inRange = this.validateChar(stream[i + position], regex[position - back])
+            }
+          }
+          if (position - back >= regex.length) {
+            i = i + position - 1
+            tokens.push({'value': word.replace(/</g, '').replace(/>/g, '') , 'terminal': this.rules[o].description})
+            added = true
+            break;
+          }
         }
-        tokens.push({'value': token, 'terminal': true})
-        token = ''
       }
-      if (char == '<') {
-        i ++
-        while (this.pattern[i] !== '>') {
-          token += this.pattern[i]
-          i++
-        }
-        tokens.push({'value': token, 'terminal': false})
-        token = ''
-      }
-    }    
+    }
+    
     return tokens
+  }
+
+  validateChar (char, string) {
+    let inRange = false
+    for (let c in string) {
+      let val = string[c]
+      if (val == char) {
+        inRange = true
+      }
+    }
+    return inRange
   }
 }
