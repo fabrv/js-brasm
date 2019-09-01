@@ -80,4 +80,4 @@ export class Parser {
       console.log(rule)
     }
   }
-}
+} 
