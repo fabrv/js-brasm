@@ -20,6 +20,10 @@
     "description": "package"
   },
   {
+    "regex": "void ",
+    "description": "type"
+  },
+  {
     "regex": "int ",
     "description": "type"
   },
@@ -50,6 +54,10 @@
   {
     "regex": ")",
     "description": "rparen"
+  },
+  {
+    "regex": ";",
+    "description": "semicolon"
   },
   {
     "regex": "[[]",

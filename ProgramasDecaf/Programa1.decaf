@@ -1,0 +1,16 @@
+class Program
+{
+
+    int IF(int val)
+    {
+        return (val+1);
+    }
+
+    void main()
+    {
+        int ern3t;
+        int array;
+        boolean thisfortrue;
+        array[0xa] += IF();
+    }
+}

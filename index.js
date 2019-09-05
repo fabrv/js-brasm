@@ -11,6 +11,3 @@ const Lex = new Lexer(rules, code)
 const tokens = Lex.tokenize()
 
 console.log(tokens)
-
-//const Parse = new Parser(grammar, tokens)
-//console.log(Parse.walk())
