@@ -16,6 +16,9 @@ export class Lexer {
         let back = 0
         const regex = new Regex(this.rules[o].regex).lex()
 
+        if (this.rules[o].description == 'lbracket') {
+          console.log(regex)
+        }
         let inRange = this.validateChar(stream[i], regex[position])
         let word = ''
         let lastPos = 0

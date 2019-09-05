@@ -64,7 +64,7 @@
     "description": "comma"
   },
   {
-    "regex": "[[]",
+    "regex": "[",
     "description": "lbracket"
   },
   {
