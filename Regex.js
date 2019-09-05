@@ -4,11 +4,11 @@ export class Regex {
   }
 
   lex() {
+    let tokens = []
     if (this.pattern == '[') {
       tokens.push('[')
       return tokens
     }
-    let tokens = []
     for (let c = 0; c < this.pattern.length; c++) {
       if (this.pattern[c] == '[') {
         c++
