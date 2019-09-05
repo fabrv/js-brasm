@@ -60,6 +60,10 @@
     "description": "semicolon"
   },
   {
+    "regex": ",",
+    "description": "comma"
+  },
+  {
     "regex": "[[]",
     "description": "lbracket"
   },
