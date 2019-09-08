@@ -28,12 +28,32 @@
     "description": "type"
   },
   {
+    "regex": "for",
+    "description": "for"
+  },
+  {
+    "regex": "if ",
+    "description": "if"
+  },
+  {
+    "regex": "break",
+    "description": "break"
+  },
+  {
+    "regex": "continue",
+    "description": "continue"
+  },
+  {
     "regex": "boolean ",
     "description": "type"
   },
   {
     "regex": "string ",
     "description": "type"
+  },
+  {
+    "regex": "return ",
+    "description": "return"
   },
   {
     "regex": "char ",
@@ -76,11 +96,15 @@
     "description": "identifier"
   },
   {
-    "regex": "[a-zA-Z_][a-zA-Z_1-9]+",
-    "description": "identifier"
+    "regex": "0x[0-9a-fA-F]+",
+    "description": "int_lit"
   },
   {
-    "regex": "[a-zA-Z_]+",
+    "regex": "[0-9]+",
+    "description": "int_lit"
+  },
+  {
+    "regex": "[a-zA-Z_][a-zA-Z_1-9]+",
     "description": "identifier"
   },
   {
@@ -90,14 +114,6 @@
   {
     "regex": "false",
     "description": "bool_literal"
-  },
-  {
-    "regex": "0x[0-9a-fA-F]+",
-    "description": "int_lit"
-  },
-  {
-    "regex": "[0-9]+",
-    "description": "int_lit"
   },
   {
     "regex": "\"[ -!#-~]+\"",

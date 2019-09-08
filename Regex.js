@@ -29,7 +29,11 @@ export class Regex {
         tokens.push(word)
         c++
       }
-      tokens.push(this.pattern[c])
+      if (this.pattern[c] !== '[') {
+        tokens.push(this.pattern[c])
+      } else {
+        c--
+      }
     }
     
     return tokens

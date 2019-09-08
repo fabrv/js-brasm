@@ -11,6 +11,6 @@ class Program
         int ern3t;
         int array;
         boolean thisfortrue;
-        array[0xa] += IF();
+        array[3] += IF();
     }
 }

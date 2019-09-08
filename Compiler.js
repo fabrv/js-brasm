@@ -15,7 +15,6 @@ export class Lexer {
         let position = 0
         let back = 0
         const regex = new Regex(this.rules[o].regex).lex()
-      
         let inRange = this.validateChar(stream[i], regex[position])
         let word = ''
         let lastPos = 0
