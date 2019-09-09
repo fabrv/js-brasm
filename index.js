@@ -10,4 +10,5 @@ const grammar = JSON.parse(fs.readFileSync('grammar.json', 'utf8'))
 const Lex = new Lexer(rules, code)
 const tokens = Lex.tokenize()
 
-console.log(tokens)
+const parse = new Parser(grammar, tokens)
+parse.walk()

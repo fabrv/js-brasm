@@ -69,14 +69,39 @@ export class Parser {
   constructor (grammar, tokens) {
     this.grammar = grammar
     this.tokens = tokens
-    this.current = 0
   }
   
   walk () {
-    let token = this.tokens[this.current]
-    for (let i = 0; i < this.grammar.length; i++) {
+    let stack = []
+
+    for (let token in this.tokens) {
+      if (!(this.tokens[token].description == 'whitespace' || this.tokens[token].description == 'comment')) {
+        stack.push(this.tokens[token])
+
+        let current = 1
+        let evalStack = stack.slice(stack.length - current, stack.length)
+        console.log(evalStack)
+      }
+    }
+
+    //console.log(stack)
+
+    
+    /*for (let i = 0; i < this.grammar.length; i++) {
       const rule = new Grammar(this.grammar[i].grammar).lex()
       console.log(rule)
+    }*/
+  }
+
+  compareStacks (tokenStack, grammarRule) {
+    if (tokenStack.length == grammarRule.length) {
+      for (let i = 0; i < grammarRule; i++) {
+        if (tokenStack[i].description != grammarRule[i]) {
+          return false
+        }
+      }
+      return true
     }
+    return false
   }
 } 

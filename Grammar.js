@@ -5,12 +5,10 @@ export class Grammar {
     this.pattern = pattern
     this.rules = [
       {
-        "regex": "<[a-zA-Z_]+>",
-        "description": false
+        "regex": "<[a-zA-Z_]+>"        
       },
       {
-        "regex": "[a-zA-Z_]+",
-        "description": true
+        "regex": "[a-zA-Z_]+"        
       }
     ]
   }
@@ -49,7 +47,7 @@ export class Grammar {
           }
           if (position - back >= regex.length) {
             i = i + position - 1
-            tokens.push({'value': word.replace(/</g, '').replace(/>/g, '') , 'terminal': this.rules[o].description})
+            tokens.push(word.replace(/</g, '').replace(/>/g, ''))
             added = true
             break;
           }

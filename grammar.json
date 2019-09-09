@@ -28,6 +28,22 @@
     "grammar": "not <expr>"
   },
   {
+    "description": "literal",
+    "grammar": "char_literal"
+  },
+  {
+    "description": "literal",
+    "grammar": "string_literal"
+  },
+  {
+    "description": "literal",
+    "grammar": "bool_literal"
+  },
+  {
+    "description": "literal",
+    "grammar": "int_lit"
+  },
+  {
     "description": "location",
     "grammar": "id lbracket <expr> rbracket"
   },
