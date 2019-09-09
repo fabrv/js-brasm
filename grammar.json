@@ -1,10 +1,6 @@
 [
   {
     "description": "callout_arg",
-    "grammar": "<expr>"
-  },
-  {
-    "description": "callout_arg",
     "grammar": "string_literal"
   },
   {
@@ -22,6 +18,10 @@
   {
     "description": "expr",
     "grammar": "<expr><arith_op><expr>"
+  },
+  {
+    "description": "expr",
+    "grammar": "lparen <expr> rparen"
   },
   {
     "description": "expr",

@@ -78,20 +78,29 @@ export class Parser {
       if (!(this.tokens[token].description == 'whitespace' || this.tokens[token].description == 'comment')) {
         stack.push(this.tokens[token])
 
-        let current = 1
-        let evalStack = stack.slice(stack.length - current, stack.length)
-        console.log(evalStack)
-
+        let current = 0
         let val = false
-        for (let i = 0; i < this.grammar.length; i++) {
-          const rule = new Grammar(this.grammar[i].grammar).lex()
-          val = this.compareStacks(evalStack, rule)
-          if (val) break          
-        }
+        let evalStack
 
-        console.log(val)
+        while (current < stack.length) {
+          current ++
+          evalStack = stack.slice(stack.length - current, stack.length)
+                  
+          for (let i = 0; i < this.grammar.length; i++) {
+            const rule = new Grammar(this.grammar[i].grammar).lex()
+            val = this.compareStacks(evalStack, rule)
+            if (val) {
+              evalStack = {'value': evalStack, 'description': this.grammar[i].description}
+              
+              stack.splice(stack.length - current, current, evalStack)
+              current = 0
+              break
+            }
+          }
+        }
       }
     }
+    console.log(JSON.stringify(stack, null, 2))
   }
 
   compareStacks (tokenStack, grammarRule) {
