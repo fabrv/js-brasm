@@ -129,7 +129,7 @@
   },
   {
     "regex": "!",
-    "description": "not_op"
+    "description": "not"
   },
   {
     "regex": "==",
@@ -149,15 +149,15 @@
   },
   {
     "regex": "=",
-    "description": "assign"
+    "description": "assign_op"
   },
   {
     "regex": "+=",
-    "description": "assign"
+    "description": "assign_op"
   },
   {
     "regex": "-=",
-    "description": "assign"
+    "description": "assign_op"
   },
   {
     "regex": "+",

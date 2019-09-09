@@ -100,7 +100,10 @@ export class Parser {
         }
       }
     }
-    console.log(JSON.stringify(stack, null, 2))
+    if (stack.length > 1) {
+      throw new Error(`Uncaught syntax error: Invalid or unexpected token.`)
+    }
+    return stack
   }
 
   compareStacks (tokenStack, grammarRule) {

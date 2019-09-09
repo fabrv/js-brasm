@@ -17,7 +17,7 @@
   },
   {
     "description": "expr",
-    "grammar": "<expr><arith_op><expr>"
+    "grammar": "<expr><bin_op><expr>"
   },
   {
     "description": "expr",
@@ -44,16 +44,32 @@
     "grammar": "int_lit"
   },
   {
-    "description": "location",
-    "grammar": "id lbracket <expr> rbracket"
+    "description": "bin_op",
+    "grammar": "arith_op"
+  },
+  {
+    "description": "bin_op",
+    "grammar": "rel_op"
+  },
+  {
+    "description": "bin_op",
+    "grammar": "eq_op"
+  },
+  {
+    "description": "bin_op",
+    "grammar": "not_op"
+  },
+  {
+    "description": "bin_op",
+    "grammar": "cond_op"
   },
   {
     "description": "location",
-    "grammar": "id"
+    "grammar": "identifier lbracket <expr> rbracket"
   },
   {
-    "description": "method_name",
-    "grammar": "id"
+    "description": "location",
+    "grammar": "identifier"
   },
   {
     "description": "method_call",
