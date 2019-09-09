@@ -81,21 +81,22 @@ export class Parser {
         let current = 1
         let evalStack = stack.slice(stack.length - current, stack.length)
         console.log(evalStack)
+
+        let val = false
+        for (let i = 0; i < this.grammar.length; i++) {
+          const rule = new Grammar(this.grammar[i].grammar).lex()
+          val = this.compareStacks(evalStack, rule)
+          if (val) break          
+        }
+
+        console.log(val)
       }
     }
-
-    //console.log(stack)
-
-    
-    /*for (let i = 0; i < this.grammar.length; i++) {
-      const rule = new Grammar(this.grammar[i].grammar).lex()
-      console.log(rule)
-    }*/
   }
 
   compareStacks (tokenStack, grammarRule) {
     if (tokenStack.length == grammarRule.length) {
-      for (let i = 0; i < grammarRule; i++) {
+      for (let i = 0; i < grammarRule.length; i++) {
         if (tokenStack[i].description != grammarRule[i]) {
           return false
         }
