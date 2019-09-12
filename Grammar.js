@@ -9,6 +9,15 @@ export class Grammar {
       },
       {
         "regex": "[a-zA-Z_]+"        
+      },
+      {
+        "regex": "+"
+      },
+      {
+        "regex": "?"
+      },
+      {
+        "regex": ",+"
       }
     ]
   }

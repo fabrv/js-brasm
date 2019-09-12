@@ -101,20 +101,36 @@ export class Parser {
       }
     }
     if (stack.length > 1) {
+      console.error(stack)
       throw new Error(`Uncaught syntax error: Invalid or unexpected token.`)
     }
     return stack
   }
 
   compareStacks (tokenStack, grammarRule) {
-    if (tokenStack.length == grammarRule.length) {
-      for (let i = 0; i < grammarRule.length; i++) {
-        if (tokenStack[i].description != grammarRule[i]) {
+    if (!grammarRule.includes(tokenStack[0].description)) {
+      return false
+    }
+    if (tokenStack.length != grammarRule.length && (!grammarRule.includes('+') || !grammarRule.includes('?') || !grammarRule.includes(',+'))) {
+      return false
+    }
+    let patternPosition = 0
+    for (let i = 0; i < grammarRule.length; i++) {
+      if (grammarRule[patternPosition] == '+') {
+        patternPosition--
+      }
+      if (tokenStack[i].description != grammarRule[patternPosition]) {
+
+        if (grammarRule[patternPosition++] == '+' || grammarRule[patternPosition++] == '?') {
+          i --
+          patternPosition ++
+        } else {
           return false
         }
       }
-      return true
+
+      patternPosition ++
     }
-    return false
+    return true
   }
-} 
+}

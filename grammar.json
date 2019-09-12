@@ -1,23 +1,43 @@
 [
   {
-    "description": "callout_arg",
-    "grammar": "string_literal"
+    "description": "expr",
+    "grammar": "<expr><bin_op><expr>"
   },
   {
     "description": "expr",
-    "grammar": "<location>"
+    "grammar": "<literal><bin_op><literal>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<location><bin_op><location>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<literal><bin_op><location>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<location><bin_op><literal>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<expr><bin_op><location>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<location><bin_op><expr>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<literal><bin_op><expr>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<expr><bin_op><literal>"
   },
   {
     "description": "expr",
     "grammar": "<method_call>"
-  },
-  {
-    "description": "expr",
-    "grammar": "<literal>"
-  },
-  {
-    "description": "expr",
-    "grammar": "<expr><bin_op><expr>"
   },
   {
     "description": "expr",
@@ -65,7 +85,11 @@
   },
   {
     "description": "location",
-    "grammar": "identifier lbracket <expr> rbracket"
+    "grammar": "<location> lbracket <expr> rbracket"
+  },
+  {
+    "description": "location",
+    "grammar": "<location> lbracket <literal> rbracket"
   },
   {
     "description": "location",
@@ -73,6 +97,11 @@
   },
   {
     "description": "method_call",
-    "grammar": "<method_name> lbracket <expr>+ rbracket"
+    "grammar": "<location> lparen <expr>, rparen"
+  }
+  ,
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <location>,+ rparen"
   }
 ]
