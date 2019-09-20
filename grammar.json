@@ -84,6 +84,26 @@
     "grammar": "cond_op"
   },
   {
+    "description": "var_decl",
+    "grammar": "<type><location> semicolon"
+  },
+  {
+    "description": "statement",
+    "grammar": "<location> assign_op <expr> semicolon"
+  },
+  {
+    "description": "statement",
+    "grammar": "<location> assign_op <literal> semicolon"
+  },
+  {
+    "description": "statement",
+    "grammar": "<location> assign_op <location> semicolon"
+  },
+  {
+    "description": "block",
+    "grammar": "lbracket <var_decl>+ <statement>+ rbracket"
+  },
+  {
     "description": "location",
     "grammar": "<location> lbracket <expr> rbracket"
   },
@@ -98,8 +118,7 @@
   {
     "description": "method_call",
     "grammar": "<location> lparen <expr>, rparen"
-  }
-  ,
+  },
   {
     "description": "method_call",
     "grammar": "<location> lparen <location>,+ rparen"

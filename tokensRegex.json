@@ -61,11 +61,11 @@
   },
   {
     "regex": "{",
-    "description": "bracket"
+    "description": "lbracket"
   },
   {
     "regex": "}",
-    "description": "bracket"
+    "description": "rbracket"
   },
   {
     "regex": "(",

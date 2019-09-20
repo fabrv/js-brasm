@@ -111,19 +111,24 @@ export class Parser {
     if (!grammarRule.includes(tokenStack[0].description)) {
       return false
     }
-    if (tokenStack.length != grammarRule.length && (!grammarRule.includes('+') || !grammarRule.includes('?') || !grammarRule.includes(',+'))) {
+    if (tokenStack.length != grammarRule.length && !(grammarRule.includes('+') || grammarRule.includes('?') || grammarRule.includes(',+'))) {
       return false
     }
     let patternPosition = 0
     for (let i = 0; i < grammarRule.length; i++) {
-      if (grammarRule[patternPosition] == '+') {
+      if (i >= tokenStack.length) {
+        return false
+      }
+      if (grammarRule[patternPosition] == '+' && tokenStack[i].description == grammarRule[patternPosition - 1]) {
         patternPosition--
       }
+      console.log('----\n', tokenStack)
+      console.log(grammarRule)
+      console.log(i, tokenStack[i], grammarRule[patternPosition])
       if (tokenStack[i].description != grammarRule[patternPosition]) {
-
-        if (grammarRule[patternPosition++] == '+' || grammarRule[patternPosition++] == '?') {
+        if (grammarRule[patternPosition + 1] == '+' || grammarRule[patternPosition + 1] == '?') {
           i --
-          patternPosition ++
+          //patternPosition ++
         } else {
           return false
         }
