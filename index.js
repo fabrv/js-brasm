@@ -14,5 +14,5 @@ const parse = new Parser(grammar, tokens)
 console.log(tokens)
 console.log(JSON.stringify(parse.walk(), null, 2))
 
-//prueba sdfsafas
+//prueba
 
