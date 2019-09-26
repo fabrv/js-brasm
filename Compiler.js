@@ -122,7 +122,7 @@ export class Parser {
       console.log('STACK')
       console.log(stackPosition, tokenStack)
       console.log('----')
-      
+
       if (tokenStack[stackPosition].description == grammarRule[rulePosition]) {
         stackPosition += 1
         rulePosition += 1
@@ -141,7 +141,7 @@ export class Parser {
             //stackPosition += 1
             break;
           case "?":
-            stackPosition += 1
+            //stackPosition += 1
             rulePosition += 1
             break;
           default:

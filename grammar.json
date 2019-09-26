@@ -145,7 +145,27 @@
   },
   {
     "description": "statement",
+    "grammar": "break semicolon"
+  },
+  {
+    "description": "statement",
     "grammar": "return <paren_expr>? semicolon"
+  },
+  {
+    "description": "statement",
+    "grammar": "return <literal>? semicolon"
+  },
+  {
+    "description": "statement",
+    "grammar": "return <location>? semicolon"
+  },
+  {
+    "description": "statement",
+    "grammar": "break semicolon"
+  },
+  {
+    "description": "statement",
+    "grammar": "continue semicolon"
   },
   {
     "description": "block",
