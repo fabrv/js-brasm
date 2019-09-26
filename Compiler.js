@@ -114,28 +114,52 @@ export class Parser {
     if (tokenStack.length != grammarRule.length && !(grammarRule.includes('+') || grammarRule.includes('?') || grammarRule.includes(',+'))) {
       return false
     }
-    let patternPosition = 0
-    for (let i = 0; i < grammarRule.length; i++) {
-      if (i >= tokenStack.length) {
-        return false
-      }
-      if (grammarRule[patternPosition] == '+' && tokenStack[i].description == grammarRule[patternPosition - 1]) {
-        patternPosition--
-      }
-      console.log('----\n', tokenStack)
-      console.log(grammarRule)
-      console.log(i, tokenStack[i], grammarRule[patternPosition])
-      if (tokenStack[i].description != grammarRule[patternPosition]) {
-        if (grammarRule[patternPosition + 1] == '+' || grammarRule[patternPosition + 1] == '?') {
-          i --
-          //patternPosition ++
-        } else {
+    let stackPosition = 0
+    let rulePosition = 0
+    while (rulePosition < grammarRule.length) {
+      console.log('RULE')
+      console.log(rulePosition, grammarRule)
+      console.log('STACK')
+      console.log(stackPosition, tokenStack)
+      console.log('----')
+      
+      if (tokenStack[stackPosition].description == grammarRule[rulePosition]) {
+        stackPosition += 1
+        rulePosition += 1
+        if (stackPosition >= tokenStack.length && rulePosition < grammarRule.length) {
+          if (grammarRule[rulePosition + 1] == '?' || grammarRule[rulePosition + 1] == '+') {
+            if (rulePosition + 2 == grammarRule.length && grammarRule[rulePosition + 1] == '?') {
+              return true
+            }
+          }
           return false
         }
+      } else {
+        switch (grammarRule[rulePosition]) {
+          case "+":
+            rulePosition -= 1
+            //stackPosition += 1
+            break;
+          case "?":
+            stackPosition += 1
+            rulePosition += 1
+            break;
+          default:
+            switch (grammarRule[rulePosition + 1]) {
+              case "?":
+              case "+":
+                if (rulePosition + 2 > grammarRule.length) {
+                  return false
+                }
+                rulePosition += 2
+                break;
+              default:
+                return false
+            }
+        }
       }
-
-      patternPosition ++
     }
+    
     return true
   }
 }

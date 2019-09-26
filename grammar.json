@@ -35,12 +35,44 @@
     "description": "expr",
     "grammar": "<expr><bin_op><literal>"
   },
+
+
+  {
+    "description": "expr",
+    "grammar": "<paren_expr><bin_op><location>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<location><bin_op><paren_expr>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<literal><bin_op><paren_expr>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<paren_expr><bin_op><literal>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<paren_expr><bin_op><expr>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<expr><bin_op><paren_expr>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<paren_expr><bin_op><paren_expr>"
+  },
+
+
   {
     "description": "expr",
     "grammar": "<method_call>"
   },
   {
-    "description": "expr",
+    "description": "paren_expr",
     "grammar": "lparen <expr> rparen"
   },
   {
@@ -100,8 +132,24 @@
     "grammar": "<location> assign_op <location> semicolon"
   },
   {
+    "description": "else_block",
+    "grammar": "else <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "if <paren_expr> <block> <else_block>?"
+  },
+  {
+    "description": "statement",
+    "grammar": "return <expr>? semicolon"
+  },
+  {
+    "description": "statement",
+    "grammar": "return <paren_expr>? semicolon"
+  },
+  {
     "description": "block",
-    "grammar": "lbracket <var_decl>+ <statement>+ rbracket"
+    "grammar": "lbracket <var_decl>+ <statement>+ <block>+ rbracket"
   },
   {
     "description": "location",
@@ -118,9 +166,5 @@
   {
     "description": "method_call",
     "grammar": "<location> lparen <expr>, rparen"
-  },
-  {
-    "description": "method_call",
-    "grammar": "<location> lparen <location>,+ rparen"
   }
 ]

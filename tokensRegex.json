@@ -36,8 +36,16 @@
     "description": "if"
   },
   {
+    "regex": "else",
+    "description": "else"
+  },
+  {
     "regex": "break",
     "description": "break"
+  },
+  {
+    "regex": "return",
+    "description": "return"
   },
   {
     "regex": "continue",
