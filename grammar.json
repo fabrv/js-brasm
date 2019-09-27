@@ -76,6 +76,18 @@
     "grammar": "lparen <expr> rparen"
   },
   {
+    "description": "paren_expr",
+    "grammar": "lparen <literal> rparen"
+  },
+  {
+    "description": "paren_expr",
+    "grammar": "lparen <locatiom> rparen"
+  },
+  {
+    "description": "paren_expr",
+    "grammar": "lparen <paren_expr> rparen"
+  },
+  {
     "description": "expr",
     "grammar": "not <expr>"
   },
@@ -116,8 +128,12 @@
     "grammar": "cond_op"
   },
   {
+    "description": "location_comma",
+    "grammar": "<location> comma"
+  },
+  {
     "description": "var_decl",
-    "grammar": "<type><location> semicolon"
+    "grammar": "<type> <location_comma>+ <location> semicolon"
   },
   {
     "description": "statement",
@@ -131,6 +147,80 @@
     "description": "statement",
     "grammar": "<location> assign_op <location> semicolon"
   },
+
+
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <expr> comma <expr> <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <paren_expr> comma <expr> <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <literal> comma <expr> <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <location> comma <expr> <block>"
+  },
+
+
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <expr> comma <paren_expr> <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <paren_expr> comma <paren_expr> <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <literal> comma <paren_expr> <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <location> comma <paren_expr> <block>"
+  },
+
+
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <expr> comma <literal> <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <paren_expr> comma <literal> <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <literal> comma <literal> <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <location> comma <literal> <block>"
+  },
+
+
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <expr> comma <location> <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <paren_expr> comma <location> <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <literal> comma <location> <block>"
+  },
+  {
+    "description": "statement",
+    "grammar": "for location assign_op <location> comma <location> <block>"
+  },
+
+
   {
     "description": "else_block",
     "grammar": "else <block>"
@@ -184,7 +274,40 @@
     "grammar": "identifier"
   },
   {
+    "description": "expr_comma",
+    "grammar": "<expr> comma"
+  },
+  {
+    "description": "expr_comma",
+    "grammar": "<literal> comma"
+  },
+  {
+    "description": "expr_comma",
+    "grammar": "<paren_expr> comma"
+  },
+  {
+    "description": "expr_comma",
+    "grammar": "<location> comma"
+  },
+ 
+  {
     "description": "method_call",
-    "grammar": "<location> lparen <expr>, rparen"
+    "grammar": "<location> lparen <expr_comma>+ <expr> rparen semicolon"
+  },
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <expr_comma>+ <literal> rparen semicolon"
+  },
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <expr_comma>+ <location> rparen semicolon"
+  },
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <expr_comma>+ <paren_expr> rparen semicolon"
+  },
+  {
+    "description": "method_call",
+    "grammar": "<location> <paren_expr> semicolon"
   }
 ]

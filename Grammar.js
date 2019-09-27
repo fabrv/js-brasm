@@ -15,9 +15,6 @@ export class Grammar {
       },
       {
         "regex": "?"
-      },
-      {
-        "regex": ",+"
       }
     ]
   }
