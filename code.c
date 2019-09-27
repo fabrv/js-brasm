@@ -1,1 +1,3 @@
-int a[1], b[5];
+void x(int a) {
+  int a;
+}

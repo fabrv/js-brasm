@@ -309,5 +309,15 @@
   {
     "description": "method_call",
     "grammar": "<location> <paren_expr> semicolon"
+  },
+
+  {
+    "description": "param_decl",
+    "grammar": "type <location> comma"
+  },
+
+  {
+    "description": "method_decl",
+    "grammar": "<type> <location> lparen <param_decl>+ rparen <block>"
   }
 ]
