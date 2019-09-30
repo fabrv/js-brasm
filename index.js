@@ -10,8 +10,6 @@ inquirer.registerPrompt('file-tree-selection', inquirerFileTreeSelection)
 const args = minimist(process.argv.slice(2))
 let cmd = args._[0] || 'help'
 
-console.log(args)
-
 let config = { input: `${process.cwd()}\\${cmd}`, output: 'a.out', stage: 'parse', opt: 'constant' }
 
 if (args.help || args.h) {
