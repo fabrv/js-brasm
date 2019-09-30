@@ -15,7 +15,7 @@ npm i
 ```bash
 node -r esm <filename> [options]
 ```
-**Options:**
+**Options:**  
 | Option                    | Description                                                                      |
 |---------------------------|----------------------------------------------------------------------------------|
 | `--o <output file name>`    | Sets de file where the compiler will output.                                     |
