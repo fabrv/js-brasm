@@ -13,7 +13,7 @@ npm i
 ```
 3. Start program
 ```bash
-node -r esm <filename> [options]
+node -r esm index.js <filename> [options]
 ```
 **Options:**  
 
