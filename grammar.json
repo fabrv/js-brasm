@@ -399,5 +399,10 @@
   {
     "description": "method_decl",
     "grammar": "<type> <location> lparen <param_decl>+ type? <location>? rparen <block>"
+  },
+
+  {
+    "description": "class_decl",
+    "grammar": "class location lbracket <var_decl>+ <method_decl>+ rbracket"
   }
 ]

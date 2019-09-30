@@ -1,3 +1,14 @@
-if (x(4, "2123", x(2, 'c', 34))) {
-  callout("test");
+class Program
+{
+
+    void main()
+    {
+        for i = 0, i < 25
+        {
+            if(true){
+                break;
+            }
+        }
+        callout("\tThis is my program!\n");
+    }
 }

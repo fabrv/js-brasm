@@ -71,7 +71,7 @@ export class Parser {
     this.tokens = tokens
   }
   
-  walk () {
+  parse () {
     let stack = []
 
     for (let token in this.tokens) {
