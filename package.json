@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/fabrv/js-brasm#readme",
   "dependencies": {
-    "esm": "^3.2.25"
+    "esm": "^3.2.25",
+    "inquirer": "^7.0.0",
+    "inquirer-file-tree-selection-prompt": "^1.0.2"
   }
 }
