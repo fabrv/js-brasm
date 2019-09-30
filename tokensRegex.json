@@ -32,7 +32,7 @@
     "description": "for"
   },
   {
-    "regex": "if ",
+    "regex": "if",
     "description": "if"
   },
   {
@@ -104,6 +104,14 @@
     "description": "identifier"
   },
   {
+    "regex": "true",
+    "description": "bool_literal"
+  },
+  {
+    "regex": "false",
+    "description": "bool_literal"
+  },
+  {
     "regex": "0x[0-9a-fA-F]+",
     "description": "int_lit"
   },
@@ -114,14 +122,6 @@
   {
     "regex": "[a-zA-Z_][a-zA-Z_1-9]+",
     "description": "identifier"
-  },
-  {
-    "regex": "true",
-    "description": "bool_literal"
-  },
-  {
-    "regex": "false",
-    "description": "bool_literal"
   },
   {
     "regex": "\"[ -!#-~]+\"",

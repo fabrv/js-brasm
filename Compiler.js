@@ -117,12 +117,14 @@ export class Parser {
     let stackPosition = 0
     let rulePosition = 0
     while (rulePosition < grammarRule.length) {
+      /*
       console.log('RULE')
       console.log(rulePosition, grammarRule)
       console.log('STACK')
       console.log(stackPosition, tokenStack)
       console.log('----')
-
+      */
+     
       if (tokenStack[stackPosition].description == grammarRule[rulePosition]) {
         stackPosition += 1
         rulePosition += 1
