@@ -25,6 +25,7 @@
   "dependencies": {
     "esm": "^3.2.25",
     "inquirer": "^7.0.0",
-    "inquirer-file-tree-selection-prompt": "^1.0.2"
+    "inquirer-file-tree-selection-prompt": "^1.0.2",
+    "minimist": "^1.2.0"
   }
 }

@@ -1,76 +1,113 @@
 import { Lexer, Parser } from "./src/Compiler";
 import * as fs from 'fs'
-import * as inquirer from 'inquirer'
+import inquirer from 'inquirer'
+import minimist from 'minimist';
+
 const inquirerFileTreeSelection = require('inquirer-file-tree-selection-prompt')
 
 inquirer.registerPrompt('file-tree-selection', inquirerFileTreeSelection)
 
-//const path = `${process.cwd()}\\${process.argv[2]}`
-//const code = fs.readFileSync(path,'utf8')
-console.log(process.argv)
+const args = minimist(process.argv.slice(2))
+let cmd = args._[0] || 'help'
 
-inquirer.prompt(
-  [
-    {
-      type: 'file-tree-selection',
-      name: 'input',
-      message: 'Select input file'
-    },
-    {
-      type: 'input',
-      name: 'output',
-      message: "Select output name"
-    },
-    {
-      type: 'list',
-      name: 'stage',
-      message: 'Select stage',
-      choices: [
-        'Scanning',
-        'Parsing',
-        {
-          name: 'AST',
-          disabled: 'Unavailable at this time'
-        },
-        {
-          name: 'Semantic',
-          disabled: 'Unavailable at this time'
-        },
-        {
-          name: 'IRT',
-          disabled: 'Unavailable at this time'
-        },
-        {
-          name: 'Codegen',
-          disabled: 'Unavailable at this time'
-        }
-      ]
-    },
-    {
-      type: 'list',
-      name: 'opt',
-      message: 'Select optimization',
-      choices: [
-        'Constant',
-        'Algebraic',
-      ]
+console.log(args)
+
+let config = { input: `${process.cwd()}\\${cmd}`, output: 'a.out', stage: 'parse', opt: 'constant' }
+
+if (args.help || args.h) {
+  cmd = 'help'
+}
+
+if (args.o) {
+  config.output = args.o
+}
+
+if (args.target) {
+  console.log(args.target)
+  config.stage = args.target
+}
+
+if (args.opt) {
+  config.opt = args.opt
+}
+
+if (cmd == 'help') {
+  inquirer.prompt(
+    [
+      {
+        type: 'file-tree-selection',
+        name: 'input',
+        message: 'Select input file'
+      },
+      {
+        type: 'input',
+        name: 'output',
+        message: "Select output name"
+      },
+      {
+        type: 'list',
+        name: 'stage',
+        message: 'Select stage',
+        choices: [
+          'scan',
+          'parse',
+          {
+            name: 'ast',
+            disabled: 'Unavailable at this time'
+          },
+          {
+            name: 'semantic',
+            disabled: 'Unavailable at this time'
+          },
+          {
+            name: 'irt',
+            disabled: 'Unavailable at this time'
+          },
+          {
+            name: 'codegen',
+            disabled: 'Unavailable at this time'
+          }
+        ]
+      },
+      {
+        type: 'list',
+        name: 'opt',
+        message: 'Select optimization',
+        choices: [
+          'constant',
+          'algebraic',
+        ]
+      }
+    ])
+    .then(answers => {
+      console.log(answers)
+      run(answers)
     }
-  ])
-  .then(answers => {
-    console.log(answers);
+  );
+} else {
+  run(config)
+}
+
+function run(config) {
+  const code = fs.readFileSync(config.input,'utf8')
+
+  const rules = JSON.parse(fs.readFileSync('./regex/tokensRegex.json', 'utf8'))
+  const grammar = JSON.parse(fs.readFileSync('./regex/grammar.json', 'utf8'))
+  
+  const Lex = new Lexer(rules, code)
+  const tokens = Lex.tokenize()
+
+  switch (config.stage) {
+    case 'scan':
+      console.log(tokens)
+      break;
+    case 'parse':
+      const parse = new Parser(grammar, tokens)
+      const tree = parse.parse()
+    
+      console.log(JSON.stringify(tree, null, 2))
+      break;
+    default:
+      console.error('Stage not available')
   }
-);
-
-/*
-
-const rules = JSON.parse(fs.readFileSync('./regex/tokensRegex.json', 'utf8'))
-const grammar = JSON.parse(fs.readFileSync('./regex/grammar.json', 'utf8'))
-
-const Lex = new Lexer(rules, code)
-const tokens = Lex.tokenize()
-
-const parse = new Parser(grammar, tokens)
-console.log(tokens)
-console.log('---')
-console.log(JSON.stringify(parse.parse(), null, 2))
-*/
+}

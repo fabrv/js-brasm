@@ -13,9 +13,16 @@ npm i
 ```
 3. Start program
 ```bash
-npm start [any source file | code.js]
+node -r esm <filename> [options]
 ```
-
+**Options:**
+| Option                    | Description                                                                      |
+|---------------------------|----------------------------------------------------------------------------------|
+| `--o <output file name>`    | Sets de file where the compiler will output.                                     |
+| `--target <stage>`          | Runs up to a stages can be `scan`, `parse`, `ast`, `semantic`, `irt`, `codegen`. |
+| `--opt <optimzation stage>` | Sets the stage of optimization; `constant`, `algebraic`.                         |
+  
+Or just run `npm start` for a setup wizard.
 ## Config files
-1. `tokensRegex.json`, includes all the tokens in Regex
-2. `grammar.json`, includes the grammar rules
+1. `regex/tokensRegex.json`, includes all the tokens in Regex
+2. `regex/grammar.json`, includes the grammar rules
