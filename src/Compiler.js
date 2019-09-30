@@ -1,5 +1,5 @@
 import { Regex } from './Regex'
-import { Grammar } from '../Grammar'
+import { Grammar } from './Grammar'
 export class Lexer {
   constructor(rules, input){
     this.rules = rules
