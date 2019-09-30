@@ -7,6 +7,7 @@ export class Lexer {
   }
 
   tokenize () {
+    console.log('Reading tokens...')
     const stream = this.input
     let tokens = []
     for (let i = 0; i < stream.length; i++) {
@@ -72,6 +73,7 @@ export class Parser {
   }
   
   parse () {
+    console.log('Building tree...')
     let stack = []
 
     for (let token in this.tokens) {
@@ -103,6 +105,10 @@ export class Parser {
     if (stack.length > 1) {
       console.error(stack)
       throw new Error(`Uncaught syntax error: Invalid or unexpected token.`)
+    }
+    if (stack[0].value[1].value[0].value != 'Program'){
+      console.error(stack)
+      throw new Error(`Uncaught syntax error: Invalid or unexpected token. No Program class declared.`)
     }
     return stack
   }
