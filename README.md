@@ -22,12 +22,11 @@ node -r esm <filename> [options]
 | --target <stage> | Runs up to a stages can be `scan`, `parse`, `ast`, `semantic`, `irt`, `codegen`. |
 | --opt <optimzation stage> | Sets the stage of optimization; `constant`, `algebraic`. |
 
-| Command   | Definition and usage                                                            |
+| Option   | Description                                                           |
 |-----------|---------------------------------------------------------------------------------|
-| translate | Translate phrase or words to spanish. Eg: `amigo translate 'text to translate'` |
-| detect    | Detects language. Eg: `amigo detect 'text to detect'`                           |
-| conjugate | Lists conjugations for verbs in spanish Eg: `amigo conjugate ser`               |
-| help      | Get help                                                                        |
+| translate | Sets de file where the compiler will output. |
+| detect    | Runs up to a stages can be `scan`, `parse`, `ast`, `semantic`, `irt`, `codegen`. |
+| conjugate | Sets the stage of optimization; `constant`, `algebraic`. |
   
 Or just run `npm start` for a setup wizard.
 ## Config files
