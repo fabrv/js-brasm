@@ -16,17 +16,12 @@ npm i
 node -r esm <filename> [options]
 ```
 **Options:**  
-| Option | Description |
-|---------------------------|----------------------------------------------------------------------------------|
-| --o <output file name> | Sets de file where the compiler will output. |
-| --target <stage> | Runs up to a stages can be `scan`, `parse`, `ast`, `semantic`, `irt`, `codegen`. |
-| --opt <optimzation stage> | Sets the stage of optimization; `constant`, `algebraic`. |
 
 | Option   | Description                                                           |
 |-----------|---------------------------------------------------------------------------------|
-| translate | Sets de file where the compiler will output. |
-| detect    | Runs up to a stages can be `scan`, `parse`, `ast`, `semantic`, `irt`, `codegen`. |
-| conjugate | Sets the stage of optimization; `constant`, `algebraic`. |
+| `--o <output file name>` | Sets de file where the compiler will output. |
+| `--target <stage>`    | Runs up to a stages can be `scan`, `parse`, `ast`, `semantic`, `irt`, `codegen`. |
+| `--opt <optimzation stage>` | Sets the stage of optimization; `constant`, `algebraic`. |
   
 Or just run `npm start` for a setup wizard.
 ## Config files
