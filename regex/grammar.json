@@ -393,7 +393,7 @@
 
   {
     "description": "param_decl",
-    "grammar": "type <location> comma"
+    "grammar": "type <location_comma>"
   },
 
   {

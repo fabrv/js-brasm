@@ -1,11 +1,11 @@
 class Program
 {
 
-    void main()
+    void main(int a, int b)
     {
         for i = 0, i < 25
         {
-            if(true){
+            if (true){
                 break;
             }
         }
