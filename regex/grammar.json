@@ -257,7 +257,11 @@
   },
   {
     "description": "var_decl",
-    "grammar": "<type> <location_comma>+ <location> semicolon"
+    "grammar": "<type> <location> semicolon"
+  },
+  {
+    "description": "var_decl",
+    "grammar": "<param_decl> <location_comma>+ <location> semicolon"
   },
   {
     "description": "statement",

@@ -92,7 +92,7 @@ export class Parser {
             const rule = new Grammar(this.grammar[i].grammar).lex()
             val = this.compareStacks(evalStack, rule)
             if (val) {
-              evalStack = {'value': evalStack, 'description': this.grammar[i].description}
+              evalStack = {'description': this.grammar[i].description, 'value': evalStack}
               
               stack.splice(stack.length - current, current, evalStack)
               current = 0
@@ -110,7 +110,7 @@ export class Parser {
       console.error(stack)
       throw new Error(`Uncaught syntax error: Invalid or unexpected token. No Program class declared.`)
     }
-    return stack
+    return stack[0]
   }
 
   compareStacks (tokenStack, grammarRule) {

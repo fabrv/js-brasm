@@ -1,5 +1,6 @@
-import { Lexer, Parser } from "./src/Compiler";
-import * as fs from 'fs'
+import { Lexer, Parser } from './src/Compiler';
+import { AST } from './src/AST';
+import * as fs from 'fs';
 import inquirer from 'inquirer'
 import minimist from 'minimist';
 
@@ -101,7 +102,7 @@ function run(config) {
       break;
     case 'parse':
       const parse = new Parser(grammar, tokens)
-      const tree = parse.parse()
+      const tree = new AST(parse.parse()).cleanTree()
     
       console.log(JSON.stringify(tree, null, 2))
       break;
