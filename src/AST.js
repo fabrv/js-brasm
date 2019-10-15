@@ -75,8 +75,26 @@ export class AST {
   }
 
   unicity(node = this.AST) {
+    const declarations = ['var_decl', 'method_decl', 'param_decl']
+    const recursive = ['method_decl', 'block']
+    let varDecl = []
     for (let children = 0; children < node.value.length; children ++) {
-      
+      for (let declaration in declarations) {
+        if (node.value[children].description === declarations[declaration]) {
+          if (varDecl.includes(node.value[children].value[1].value[0].value)) {
+            throw new Error(`Identifier '${node.value[children].value[1].value[0].value}' has already been declared`)
+          } else {
+            varDecl.push(node.value[children].value[1].value[0].value)
+          }
+        }
+      }
+
+      for (let recurse in recursive) {
+        if (node.value[children].description === recursive[recurse]) {
+          this.unicity(node.value[children])
+        }
+      }
     }
+    console.log(varDecl)
   }
 }
