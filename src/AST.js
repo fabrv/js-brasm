@@ -31,7 +31,27 @@ export class AST {
         case 'var_decl':
           if (node.value[children].value[0].description === 'param_decl') {
             const type = node.value[children].value[0].value[0].value
-            console.log(type)
+            //node.value[children].value[0].description = 'var_decl'
+            node.value.push({
+              description: 'var_decl',
+              value: [
+                Object.assign({}, node.value[children].value[0].value[0]),
+                Object.assign({}, node.value[children].value[0].value[1])
+              ]
+            })
+            for (let i = 1; i < node.value[children].value.length; i ++) {
+              if (node.value[children].value[i].value == ';') break;
+              const obj = {
+                description: 'var_decl',
+                value: [
+                  { 'value': type, 'description': 'type'},
+                  Object.assign({}, node.value[children].value[i])
+                ]
+              }
+              node.value.push(obj)
+            }
+
+            node.value.splice(children, 1)
           }
           break;
       }
@@ -52,5 +72,11 @@ export class AST {
     }
 
     return node
+  }
+
+  unicity(node = this.AST) {
+    for (let children = 0; children < node.value.length; children ++) {
+      
+    }
   }
 }

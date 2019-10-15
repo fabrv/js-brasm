@@ -1,8 +1,8 @@
 class Program
 {
+    int a, b, c;    
     void main()
     {
-        int x, b, c, d;
         callout("\tThis is my program!\n");
     }
 }
