@@ -74,27 +74,33 @@ export class AST {
     return node
   }
 
-  unicity(node = this.AST) {
+  
+
+  semCheck(node = this.AST) {
     const declarations = ['var_decl', 'method_decl', 'param_decl']
-    const recursive = ['method_decl', 'block']
+    const recursive = ['method_decl', 'block', 'statement']
     let varDecl = []
     for (let children = 0; children < node.value.length; children ++) {
+
+      // Declaration checker, adds declarations to varDecl Array.
       for (let declaration in declarations) {
         if (node.value[children].description === declarations[declaration]) {
           if (varDecl.includes(node.value[children].value[1].value[0].value)) {
-            throw new Error(`Identifier '${node.value[children].value[1].value[0].value}' has already been declared`)
+            throw new Error(`Identifier '${node.value[children].value[1].value[0].value}' has already been declared.`)
           } else {
             varDecl.push(node.value[children].value[1].value[0].value)
           }
         }
       }
 
+      // Enter new scope
       for (let recurse in recursive) {
         if (node.value[children].description === recursive[recurse]) {
           this.unicity(node.value[children])
         }
       }
+
+
     }
-    console.log(varDecl)
   }
 }
