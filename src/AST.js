@@ -6,7 +6,6 @@ export class AST {
   cleanTree (node = this.AST) {
     const extras = ['{', '}', '[', ']', '(', ')', ';', ',']
     for (let children = 0; children < node.value.length; children ++) {
-
       switch (node.value[children].description) {
         case 'paren_expr':
           node.value[children].description = 'expr'
@@ -82,13 +81,22 @@ export class AST {
     let varDecl = []
     //add Rule  #
     
-    if (!this.mainParams(node)) {
-      throw new Error('Void must not have any parameters')
+    if (node.description == "class_decl") {
+      if (!this.mainParams(node)) {
+        throw new Error('Void must not have any parameters')
+      }
     }
 
 
     for (let children = 0; children < node.value.length; children ++) {
-
+      if(node.value[children].description == 'var_decl'){
+        if(node.value[children].value[1].value.length > 1){
+          if(!this.arrayDecl(node.value[children])){
+            throw new Error('Array_Declaration length must be greater than 0');
+          }
+        }
+        
+      }
       // Declaration checker, adds declarations to varDecl Array.
       for (let declaration in declarations) {
         if (node.value[children].description === declarations[declaration]) {
@@ -115,15 +123,23 @@ export class AST {
     for (let i = 0; i < node.value.length; i++){
       if (node.value[i].description == 'method_decl'){
         let method = node.value[i]
-        if (method.value > 2){
+        if (method.value.length > 3){
           return false;
         } else{
-          if((method.value[0].value == 'void')&&(method.value[1].value[0].value == 'main')&&(method.value[2].description == 'block')){
+          if((method.value[0].value == 'void ')&&(method.value[1].value[0].value == 'main')&&(method.value[2].description == 'block')){
             return true;
           }
         }
       }
     }
     return false;
+  }
+
+  arrayDecl(node){
+    if((node.value[1].value[1].description == 'int_lit')&&(node.value[1].value[1].value > 0)){
+      return true;
+    }else{
+      return false;
+    }
   }
 }
