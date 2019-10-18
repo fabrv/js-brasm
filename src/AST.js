@@ -80,7 +80,13 @@ export class AST {
     const declarations = ['var_decl', 'method_decl', 'param_decl']
     const recursive = ['method_decl', 'block', 'statement']
     let varDecl = []
+    //add Rule  #
     
+    if (!this.mainParams(node)) {
+      throw new Error('Void must not have any parameters')
+    }
+
+
     for (let children = 0; children < node.value.length; children ++) {
 
       // Declaration checker, adds declarations to varDecl Array.
@@ -103,5 +109,21 @@ export class AST {
 
 
     }
+  }
+
+  mainParams(node){
+    for (let i = 0; i < node.value.length; i++){
+      if (node.value[i].description == 'method_decl'){
+        let method = node.value[i]
+        if (method.value > 2){
+          return false;
+        } else{
+          if((method.value[0].value == 'void')&&(method.value[1].value[0].value == 'main')&&(method.value[2].description == 'block')){
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   }
 }

@@ -1,16 +1,8 @@
 class Program
 {
     int a, b, c;
-    void main()
+    void main(int a)
     {
-        int a, b, c;
-        for i = 0, i < 25
-        {
-            int a;
-            if(true){
-                break;
-            }
-        }
         callout("\tThis is my program!\n");
     }
 }
