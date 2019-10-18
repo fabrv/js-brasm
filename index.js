@@ -103,7 +103,7 @@ function run(config) {
     case 'parse':
       const parse = new Parser(grammar, tokens)
       const tree = new AST(parse.parse()).cleanTree()
-      const semCheck = new AST(tree).unicity()
+      const semCheck = new AST(tree).semCheck()
     
       console.log(JSON.stringify(tree, null, 2))
       break;

@@ -6,7 +6,7 @@ class Program
         int a, b, c;
         for i = 0, i < 25
         {
-            int a, a;
+            int a;
             if(true){
                 break;
             }

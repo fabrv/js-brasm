@@ -80,6 +80,7 @@ export class AST {
     const declarations = ['var_decl', 'method_decl', 'param_decl']
     const recursive = ['method_decl', 'block', 'statement']
     let varDecl = []
+    
     for (let children = 0; children < node.value.length; children ++) {
 
       // Declaration checker, adds declarations to varDecl Array.
@@ -96,7 +97,7 @@ export class AST {
       // Enter new scope
       for (let recurse in recursive) {
         if (node.value[children].description === recursive[recurse]) {
-          this.unicity(node.value[children])
+          this.semCheck(node.value[children])
         }
       }
 
