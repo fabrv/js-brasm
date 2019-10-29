@@ -1,6 +1,8 @@
 export class AST {
   constructor (AST) {
     this.AST = AST
+    // this.allVars = ['Program']
+    console.log('Checking semantic errors')
   }
 
   cleanTree (node = this.AST) {
@@ -73,15 +75,14 @@ export class AST {
     return node
   }
 
-  semCheck (node = this.AST) {
+  semCheck (node = this.AST, parentVars = ['Program']) {
     const declarations = ['var_decl', 'method_decl', 'param_decl']
-    const recursive = ['method_decl', 'block', 'statement']
+    const recursive = ['method_decl', 'block', 'statement', 'method_call', 'expr']
     const varDecl = []
-    // add Rule  #
 
     if (node.description === 'class_decl') {
       if (!this.mainParams(node)) {
-        throw new Error('Void must not have any parameters')
+        throw new Error('Main must not have any parameters')
       }
     }
 
@@ -101,20 +102,25 @@ export class AST {
             throw new Error(`Identifier '${node.value[children].value[1].value[0].value}' has already been declared.`)
           } else {
             varDecl.push(node.value[children].value[1].value[0].value)
+            parentVars.push(node.value[children].value[1].value[0].value)
           }
+        }
+      }
+
+      if (node.value[children].description === 'location') {
+        if (!parentVars.includes(node.value[children].value[0].value)) {
+          throw new Error(`Identifier '${node.value[children].value[0].value}' has not been declared before call.`)
         }
       }
 
       // Enter new scope
       for (const recurse in recursive) {
         if (node.value[children].description === recursive[recurse]) {
-          this.semCheck(node.value[children])
+          this.semCheck(node.value[children], parentVars.slice())
         }
       }
     }
   }
-
-  idBeforeDecl (node) {}
 
   mainParams (node) {
     for (let i = 0; i < node.value.length; i++) {

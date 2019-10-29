@@ -269,6 +269,10 @@
   },
   {
     "description": "statement",
+    "grammar": "<location> assign_op <paren_expr> semicolon"
+  },
+  {
+    "description": "statement",
     "grammar": "<location> assign_op <literal> semicolon"
   },
   {
