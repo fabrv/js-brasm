@@ -31,7 +31,7 @@ export class AST {
           if (node.value[children].value[0].description === 'param_decl') {
             const type = node.value[children].value[0].value[0].value
             //node.value[children].value[0].description = 'var_decl'
-            node.value.push({
+            node.value.splice(children + 1, 0, {
               description: 'var_decl',
               value: [
                 Object.assign({}, node.value[children].value[0].value[0]),
@@ -47,7 +47,7 @@ export class AST {
                   Object.assign({}, node.value[children].value[i])
                 ]
               }
-              node.value.push(obj)
+              node.value.splice(children + 1 + i, 0, obj)
             }
 
             node.value.splice(children, 1)
@@ -92,7 +92,7 @@ export class AST {
       if(node.value[children].description == 'var_decl'){
         if(node.value[children].value[1].value.length > 1){
           if(!this.arrayDecl(node.value[children])){
-            throw new Error('Array_Declaration length must be greater than 0');
+            throw new Error('Array declaration length must be greater than 0');
           }
         }
         
@@ -119,7 +119,11 @@ export class AST {
     }
   }
 
-  mainParams(node){
+  idBeforeDecl (node) {
+    
+  }
+
+  mainParams (node){
     for (let i = 0; i < node.value.length; i++){
       if (node.value[i].description == 'method_decl'){
         let method = node.value[i]
@@ -135,7 +139,7 @@ export class AST {
     return false;
   }
 
-  arrayDecl(node){
+  arrayDecl (node){
     if((node.value[1].value[1].description == 'int_lit')&&(node.value[1].value[1].value > 0)){
       return true;
     }else{
