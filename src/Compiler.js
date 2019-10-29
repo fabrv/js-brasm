@@ -1,7 +1,7 @@
 import { Regex } from './Regex'
 import { Grammar } from './Grammar'
 export class Lexer {
-  constructor(rules, input){
+  constructor (rules, input) {
     this.rules = rules
     this.input = input
   }
@@ -9,7 +9,7 @@ export class Lexer {
   tokenize () {
     console.log('Reading tokens...')
     const stream = this.input
-    let tokens = []
+    const tokens = []
     for (let i = 0; i < stream.length; i++) {
       let added = false
       for (let o = 0; o < this.rules.length; o++) {
@@ -22,27 +22,27 @@ export class Lexer {
         if (inRange) {
           while (inRange) {
             word += stream[i + position]
-            position ++
+            position++
 
-            if (regex[position - back] == '+') {
-              back ++
-              if (lastPos == 0) {
+            if (regex[position - back] === '+') {
+              back++
+              if (lastPos === 0) {
                 lastPos = position
               }
             }
 
             inRange = this.validateChar(stream[i + position], regex[position - back])
 
-            if (!inRange && regex[position - back + 1] == '+') {
+            if (!inRange && regex[position - back + 1] === '+') {
               back -= 2
               inRange = this.validateChar(stream[i + position], regex[position - back])
             }
           }
           if (position - back >= regex.length) {
             i = i + position - 1
-            tokens.push({'value': word, 'description': this.rules[o].description})
+            tokens.push({ value: word, description: this.rules[o].description })
             added = true
-            break;
+            break
           }
         }
       }
@@ -50,15 +50,15 @@ export class Lexer {
         throw new Error(`Uncaught syntax error: Invalid or unexpected token in position ${i} - ${stream[i - 2]}${stream[i - 1]}${stream[i]}${stream[i + 1]}${stream[i + 2]}`)
       }
     }
-    
+
     return tokens
   }
 
   validateChar (char, string) {
     let inRange = false
-    for (let c in string) {
-      let val = string[c]
-      if (val == char) {
+    for (const c in string) {
+      const val = string[c]
+      if (val === char) {
         inRange = true
       }
     }
@@ -71,13 +71,13 @@ export class Parser {
     this.grammar = grammar
     this.tokens = tokens
   }
-  
+
   parse () {
     console.log('Building tree...')
-    let stack = []
+    const stack = []
 
-    for (let token in this.tokens) {
-      if (!(this.tokens[token].description == 'whitespace' || this.tokens[token].description == 'comment')) {
+    for (const token in this.tokens) {
+      if (!(this.tokens[token].description === 'whitespace' || this.tokens[token].description === 'comment')) {
         stack.push(this.tokens[token])
 
         let current = 0
@@ -85,15 +85,15 @@ export class Parser {
         let evalStack
 
         while (current < stack.length) {
-          current ++
+          current++
           evalStack = stack.slice(stack.length - current, stack.length)
-                  
+
           for (let i = 0; i < this.grammar.length; i++) {
             const rule = new Grammar(this.grammar[i].grammar).lex()
             val = this.compareStacks(evalStack, rule)
             if (val) {
-              evalStack = {'description': this.grammar[i].description, 'value': evalStack}
-              
+              evalStack = { description: this.grammar[i].description, value: evalStack }
+
               stack.splice(stack.length - current, current, evalStack)
               current = 0
               break
@@ -104,11 +104,11 @@ export class Parser {
     }
     if (stack.length > 1) {
       console.error(stack)
-      throw new Error(`Uncaught syntax error: Invalid or unexpected token.`)
+      throw new Error('Uncaught syntax error: Invalid or unexpected token.')
     }
-    if (stack[0].value[1].value[0].value != 'Program'){
+    if (stack[0].value[1].value[0].value !== 'Program') {
       console.error(stack)
-      throw new Error(`Uncaught syntax error: Invalid or unexpected token. No Program class declared.`)
+      throw new Error('Uncaught syntax error: Invalid or unexpected token. No Program class declared.')
     }
     return stack[0]
   }
@@ -117,7 +117,7 @@ export class Parser {
     if (!grammarRule.includes(tokenStack[0].description)) {
       return false
     }
-    if (tokenStack.length != grammarRule.length && !(grammarRule.includes('+') || grammarRule.includes('?') || grammarRule.includes(',+'))) {
+    if (tokenStack.length !== grammarRule.length && !(grammarRule.includes('+') || grammarRule.includes('?') || grammarRule.includes(',+'))) {
       return false
     }
     let stackPosition = 0
@@ -130,13 +130,13 @@ export class Parser {
       console.log(stackPosition, tokenStack)
       console.log('----')
       */
-     
-      if (tokenStack[stackPosition].description == grammarRule[rulePosition]) {
+
+      if (tokenStack[stackPosition].description === grammarRule[rulePosition]) {
         stackPosition += 1
         rulePosition += 1
         if (stackPosition >= tokenStack.length && rulePosition < grammarRule.length) {
-          if (grammarRule[rulePosition + 1] == '?' || grammarRule[rulePosition + 1] == '+') {
-            if (rulePosition + 2 == grammarRule.length && grammarRule[rulePosition + 1] == '?') {
+          if (grammarRule[rulePosition + 1] === '?' || grammarRule[rulePosition + 1] === '+') {
+            if (rulePosition + 2 === grammarRule.length && grammarRule[rulePosition + 1] === '?') {
               return true
             }
           }
@@ -144,30 +144,30 @@ export class Parser {
         }
       } else {
         switch (grammarRule[rulePosition]) {
-          case "+":
+          case '+':
             rulePosition -= 1
-            //stackPosition += 1
-            break;
-          case "?":
-            //stackPosition += 1
+            // stackPosition += 1
+            break
+          case '?':
+            // stackPosition += 1
             rulePosition += 1
-            break;
+            break
           default:
             switch (grammarRule[rulePosition + 1]) {
-              case "?":
-              case "+":
+              case '?':
+              case '+':
                 if (rulePosition + 2 > grammarRule.length) {
                   return false
                 }
                 rulePosition += 2
-                break;
+                break
               default:
                 return false
             }
         }
       }
     }
-    
+
     return true
   }
 }

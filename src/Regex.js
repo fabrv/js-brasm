@@ -3,18 +3,18 @@ export class Regex {
     this.pattern = pattern
   }
 
-  lex() {
-    let tokens = []
-    if (this.pattern == '[') {
+  lex () {
+    const tokens = []
+    if (this.pattern === '[') {
       tokens.push('[')
       return tokens
     }
     for (let c = 0; c < this.pattern.length; c++) {
-      if (this.pattern[c] == '[') {
+      if (this.pattern[c] === '[') {
         c++
         let word = ''
-        while (this.pattern[c] != ']') {
-          if (this.pattern[c + 1] == '-' && this.pattern[c + 2] != ']') {
+        while (this.pattern[c] !== ']') {
+          if (this.pattern[c + 1] === '-' && this.pattern[c + 2] !== ']') {
             word += this.range(this.pattern[c], this.pattern[c + 2])
             c += 3
           } else {
@@ -22,7 +22,7 @@ export class Regex {
             c++
           }
 
-          if (c == this.pattern.length) {
+          if (c === this.pattern.length) {
             throw new Error('No closing bracket.')
           }
         }
@@ -35,11 +35,11 @@ export class Regex {
         c--
       }
     }
-    
+
     return tokens
   }
 
-  range(a = '', b = '') {
+  range (a = '', b = '') {
     let value = ''
     const valA = a.charCodeAt(0)
     const valB = b.charCodeAt(0)

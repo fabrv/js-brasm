@@ -5,25 +5,24 @@ export class Grammar {
     this.pattern = pattern
     this.rules = [
       {
-        "regex": "<[a-zA-Z_]+>"        
+        regex: '<[a-zA-Z_]+>'
       },
       {
-        "regex": "[a-zA-Z_]+"        
+        regex: '[a-zA-Z_]+'
       },
       {
-        "regex": "+"
+        regex: '+'
       },
       {
-        "regex": "?"
+        regex: '?'
       }
     ]
   }
 
   lex () {
     const stream = this.pattern
-    let tokens = []
+    const tokens = []
     for (let i = 0; i < stream.length; i++) {
-      let added = false
       for (let o = 0; o < this.rules.length; o++) {
         let position = 0
         let back = 0
@@ -35,18 +34,18 @@ export class Grammar {
         if (inRange) {
           while (inRange) {
             word += stream[i + position]
-            position ++
+            position++
 
-            if (regex[position - back] == '+') {
-              back ++
-              if (lastPos == 0) {
+            if (regex[position - back] === '+') {
+              back++
+              if (lastPos === 0) {
                 lastPos = position
               }
             }
 
             inRange = this.validateChar(stream[i + position], regex[position - back])
 
-            if (!inRange && regex[position - back + 1] == '+') {
+            if (!inRange && regex[position - back + 1] === '+') {
               back -= 2
               inRange = this.validateChar(stream[i + position], regex[position - back])
             }
@@ -54,21 +53,20 @@ export class Grammar {
           if (position - back >= regex.length) {
             i = i + position - 1
             tokens.push(word.replace(/</g, '').replace(/>/g, ''))
-            added = true
-            break;
+            break
           }
         }
       }
     }
-    
+
     return tokens
   }
 
   validateChar (char, string) {
     let inRange = false
-    for (let c in string) {
-      let val = string[c]
-      if (val == char) {
+    for (const c in string) {
+      const val = string[c]
+      if (val === char) {
         inRange = true
       }
     }
