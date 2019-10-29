@@ -1,5 +1,10 @@
 [
   {
+    "description": "method",
+    "grammar": "<location> lparen rparen"
+  },
+  
+  {
     "description": "expr",
     "grammar": "<expr><bin_op><expr>"
   },
@@ -68,42 +73,98 @@
 
   {
     "description": "expr",
-    "grammar": "<location> lparen <expr_comma>+ <expr> rparen <bin_op> <paren_expr>"
+    "grammar": "<method_call><bin_op><paren_expr>"
   },
   {
     "description": "expr",
-    "grammar": "<location> lparen <expr_comma>+ <expr> rparen <bin_op> <literal>"
+    "grammar": "<paren_expr><bin_op><method_call>"
   },
   {
     "description": "expr",
-    "grammar": "<location> lparen <expr_comma>+ <expr> rparen <bin_op> <expr>"
+    "grammar": "<method_call><bin_op><expr>"
   },
   {
     "description": "expr",
-    "grammar": "<location> lparen <expr_comma>+ <expr> rparen <bin_op> <location>"
+    "grammar": "<expr><bin_op><method_call>"
   },
   {
     "description": "expr",
-    "grammar": "<location> lparen <expr_comma>+ <expr> rparen <bin_op> <location> lparen <expr_comma>+ <expr> rparen"
+    "grammar": "<method_call><bin_op><literal>"
   },
   {
     "description": "expr",
-    "grammar": "<paren_expr> <bin_op> <location> lparen <expr_comma>+ <expr> rparen"
+    "grammar": "<literal><bin_op><method_call>"
   },
   {
     "description": "expr",
-    "grammar": "<literal> <bin_op> <location> lparen <expr_comma>+ <expr> rparen"
+    "grammar": "<method_call><bin_op><location>"
   },
   {
     "description": "expr",
-    "grammar": "<expr> <bin_op> <location> lparen <expr_comma>+ <expr> rparen"
+    "grammar": "<location><bin_op><method_call>"
   },
   {
     "description": "expr",
-    "grammar": "<location> <bin_op> <location> lparen <expr_comma>+ <expr> rparen"
+    "grammar": "<method_call><bin_op><method_call>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<method_call><bin_op><method>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<method><bin_op><method_call>"
   },
 
 
+  {
+    "description": "expr",
+    "grammar": "<method><bin_op><paren_expr>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<paren_expr><bin_op><method>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<method><bin_op><expr>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<expr><bin_op><method>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<method><bin_op><literal>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<literal><bin_op><method>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<method><bin_op><location>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<location><bin_op><method>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<method><bin_op><method_call>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<method_call><bin_op><method>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<method><bin_op><method>"
+  },
+  {
+    "description": "expr",
+    "grammar": "<method><bin_op><method>"
+  },
 
 
   {
@@ -300,7 +361,11 @@
 
   {
     "description": "statement",
-    "grammar": "<method_call>"
+    "grammar": "<method_call> semicolon"
+  },
+  {
+    "description": "statement",
+    "grammar": "<method> semicolon"
   },
 
   {
@@ -374,29 +439,24 @@
  
   {
     "description": "method_call",
-    "grammar": "<location> lparen <expr_comma>+ <expr> rparen semicolon"
+    "grammar": "<location> lparen <expr_comma>+ <expr> rparen"
   },
   {
     "description": "method_call",
-    "grammar": "<location> lparen <expr_comma>+ <literal> rparen semicolon"
+    "grammar": "<location> lparen <expr_comma>+ <literal> rparen"
   },
   {
     "description": "method_call",
-    "grammar": "<location> lparen <expr_comma>+ <location> rparen semicolon"
+    "grammar": "<location> lparen <expr_comma>+ <location> rparen"
   },
   {
     "description": "method_call",
-    "grammar": "<location> lparen <expr_comma>+ <paren_expr> rparen semicolon"
-  },
-
-  {
-    "description": "method_call",
-    "grammar": "<location> lparen rparen semicolon"
+    "grammar": "<location> lparen <expr_comma>+ <paren_expr> rparen"
   },
 
   {
     "description": "method_call",
-    "grammar": "callout <paren_expr> semicolon"
+    "grammar": "callout <paren_expr>"
   },
 
   {
@@ -407,6 +467,11 @@
   {
     "description": "method_decl",
     "grammar": "<type> <location> lparen <param_decl>+ type? <location>? rparen <block>"
+  },
+
+  {
+    "description": "method_decl",
+    "grammar": "<type> <method> <block>"
   },
 
   {

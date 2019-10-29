@@ -19,7 +19,9 @@ export class AST {
           node.value[children] = node.value[children].value[0]
           break
         case 'method_decl':
-          if (node.value[children].value[3].description === 'param_decl') {
+          if (node.value[children].value[1].description === 'method') {
+            node.value[children].value.splice(1, 1, node.value[children].value[1].value[0])
+          } else if (node.value[children].value[3].description === 'param_decl') {
             const l = node.value[children].value.length
             node.value[children].value[l - 4].value = [
               Object.assign({}, node.value[children].value[l - 4]),

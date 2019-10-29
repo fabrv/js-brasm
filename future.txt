@@ -1,0 +1,15 @@
+const x = ["paren_expr", "expr", "literal", "location", "method_call", "method"]
+y = (other) => {
+	let str = ''
+	for (const i in x) {
+		str += `  {
+    "description": "expr",
+    "grammar": "<${other}><bin_op><${x[i]}>"
+  },\n`
+		str += `  {
+    "description": "expr",
+    "grammar": "<${x[i]}><bin_op><${other}>"
+  },\n`
+    }
+	return str
+}
