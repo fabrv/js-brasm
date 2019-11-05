@@ -96,6 +96,19 @@ export class AST {
           }
         }
       }
+      /*
+      //Rule 18
+      if (node.value[children].description === 'method_decl'){
+        if (node.value[children].value[2].description === 'block'){
+          for (let ru8 = 1; ru8 < node.value.length; ru8++){
+            if (node.value[children].value[2].value[ru8].description === 'statement'){
+              
+            }
+          }
+        }
+      }
+      //End rule 18
+      */
 
       // Declaration checker, adds declarations to varDecl Array.
       for (const declaration in declarations) {
@@ -145,6 +158,14 @@ export class AST {
       return true
     } else {
       return false
+    }
+  }
+
+  brecon (node){
+    for (let j = 0; j < node.value.length; j++){
+      if (node.value[i].description === 'method_decl'){
+        return true
+      }
     }
   }
 }

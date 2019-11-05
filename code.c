@@ -1,10 +1,13 @@
 class Program
 {
-    int a, b, c;
-    void test() {
-        callout("test");
-    }
-    void main() {
-        a = 1 + test();
+    int i;
+    void main(){
+        for i = 0, i < 25{
+            if(true){
+                break;
+            }
+        }
+        break;
+        callout("\tThis is my program!\n");
     }
 }
