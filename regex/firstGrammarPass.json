@@ -1,0 +1,14 @@
+[
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <expr_comma>+ <literal> rparen"
+  },
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <expr_comma>+ <location> rparen"
+  },
+  {
+    "description": "method",
+    "grammar": "<location> lparen rparen"
+  }
+]

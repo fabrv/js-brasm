@@ -1,8 +1,10 @@
+/* eslint-disable no-case-declarations */
 import { Lexer, Parser } from './src/Compiler';
 import { AST } from './src/AST';
 import * as fs from 'fs';
 import inquirer from 'inquirer'
 import minimist from 'minimist';
+import { Codegen } from './src/Codegen';
 
 const inquirerFileTreeSelection = require('inquirer-file-tree-selection-prompt')
 
@@ -75,7 +77,7 @@ if (cmd == 'help') {
         message: 'Select optimization',
         choices: [
           'constant',
-          'algebraic',
+          'algebraic'
         ]
       }
     ])
@@ -100,13 +102,15 @@ function run (config) {
   switch (config.stage) {
     case 'scan':
       console.log(tokens)
-      break;
+      break
     case 'parse':
       const parse = new Parser(grammar, tokens)
       const tree = new AST(parse.parse()).cleanTree()
-      console.log(JSON.stringify(tree, null, 2))
+      // console.log(JSON.stringify(tree, null, 2))
       const semCheck = new AST(tree).semCheck()
-      break;
+      const codegen = new Codegen(tree).traverse()
+      console.log(JSON.stringify(codegen, null, 2))
+      break
     default:
       console.error('Stage not available')
   }

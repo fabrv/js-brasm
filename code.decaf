@@ -1,0 +1,16 @@
+class Program
+{
+    void main()
+    {
+        int i;
+        int b;
+        i = 34 * 12;
+        for i = 0, i < 10
+        {
+            b = b + i;
+            if(b > 2){
+                callout("\tThis is my program!\n");
+            }
+        }
+    }
+}
