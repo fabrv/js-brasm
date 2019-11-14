@@ -82,11 +82,12 @@ export class AST {
     const recursive = ['method_decl', 'block', 'statement', 'method_call', 'expr']
     const varDecl = []
 
+    /*
     if (node.description === 'class_decl') {
       if (!this.mainParams(node)) {
         throw new Error('Main must not have any parameters')
       }
-    }
+    }*/
 
     for (let children = 0; children < node.value.length; children++) {
       if (node.value[children].description === 'var_decl') {
@@ -102,7 +103,6 @@ export class AST {
         if (node.value[children].value[2].description === 'block'){
           for (let ru8 = 1; ru8 < node.value.length; ru8++){
             if (node.value[children].value[2].value[ru8].description === 'statement'){
-              
             }
           }
         }
@@ -158,14 +158,6 @@ export class AST {
       return true
     } else {
       return false
-    }
-  }
-
-  brecon (node){
-    for (let j = 0; j < node.value.length; j++){
-      if (node.value[i].description === 'method_decl'){
-        return true
-      }
     }
   }
 }

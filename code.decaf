@@ -2,15 +2,12 @@ class Program
 {
     void main()
     {
-        int i;
-        int b;
-        i = 34 * 12;
-        for i = 0, i < 10
+        for i = 0, i < 25
         {
-            b = b + i;
-            if(b > 2){
-                callout("\tThis is my program!\n");
+            if(true){
+                break;
             }
         }
+        callout("\tThis is my program!\n"); 
     }
 }

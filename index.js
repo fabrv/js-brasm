@@ -91,7 +91,7 @@ if (cmd == 'help') {
 }
 
 function run (config) {
-  const code = fs.readFileSync(config.input,'utf8')
+  const code = fs.readFileSync(config.input, 'utf8')
 
   const rules = JSON.parse(fs.readFileSync('./regex/tokensRegex.json', 'utf8'))
   const grammar = JSON.parse(fs.readFileSync('./regex/grammar.json', 'utf8'))
@@ -108,8 +108,13 @@ function run (config) {
       const tree = new AST(parse.parse()).cleanTree()
       // console.log(JSON.stringify(tree, null, 2))
       const semCheck = new AST(tree).semCheck()
-      const codegen = new Codegen(tree).traverse()
-      console.log(JSON.stringify(codegen, null, 2))
+      const codegen = new Codegen(tree)
+      codegen.AST = codegen.traverse()
+      codegen.AST = codegen.expressionReturn()
+      const code = codegen.heading(codegen.build())
+
+      fs.writeFileSync(`${process.cwd()}\\bin.asm`, code)
+      console.log('code built')
       break
     default:
       console.error('Stage not available')
