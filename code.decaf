@@ -1,14 +1,22 @@
 class Program
 {
     int f(int a, int b) {
-        return a + b;
-    }
+        int i;
+        int number;
+        number = 1;
+        for i = 0, i < b
+        {
+            number = number * a;
+            i = i + 1;
+        }
 
+        return number;
+    }
     void main()
     {
-        int a, b;
-        a = 1;
-        b = 2;
-        a = (a + (b + 3)) + a;
+        int x;
+        x = f(2, 2) + 0;
+        callout("Resut: ");
+        callout(x);
     }
 }

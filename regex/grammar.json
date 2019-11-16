@@ -456,7 +456,49 @@
 
   {
     "description": "method_call",
+    "grammar": "<location> lparen <location_comma>+ <expr> rparen"
+  },
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <location_comma>+ <literal> rparen"
+  },
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <location_comma>+ <location> rparen"
+  },
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <location_comma>+ <paren_expr> rparen"
+  },
+
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <expr> rparen"
+  },
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <literal> rparen"
+  },
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <location> rparen"
+  },
+  {
+    "description": "method_call",
+    "grammar": "<location> lparen <paren_expr> rparen"
+  },
+
+  {
+    "description": "method_call",
     "grammar": "callout <paren_expr>"
+  },
+  {
+    "description": "method_call",
+    "grammar": "callout lparen <location> rparen"
+  },
+  {
+    "description": "method_call",
+    "grammar": "callout lparen <literal> rparen"
   },
 
   {

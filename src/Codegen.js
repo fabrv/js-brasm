@@ -12,7 +12,7 @@ export class Codegen {
     for (const str in this.strings) {
       stringsCode += `\n string${str} db '${this.strings[str].substring(1, this.strings[str].length - 1)}', '$'`
     }
-    return `.model small \n.stack 200 \n.data ${stringsCode} \n.code \n mov ax, @data \n mov ds, ax \n call main \r\n ${code}`
+    return `.model small \n.stack 200 \n.data \n ri db ? ${stringsCode} \n.code \n mov ax, @data \n mov ds, ax \n call main \r\n ${code}`
   }
 
   returnText (rtn) {
@@ -192,7 +192,7 @@ export class Codegen {
       node.value.splice(0, 1)
       return node.value
     } else if (node.value[0] === 'return') {
-      const code = ['\n mov ax, ', node.value[1], `\n jmp .${node.scope}`]
+      const code = ['\n mov cx, ', node.value[1], `\n jmp .${node.scope}`]
       return code
     } else if (node.value[0] === 'break') {
       return `\n jmp .${node.scope}`
@@ -239,8 +239,13 @@ export class Codegen {
 
   methodCall (node) {
     if (node.value[0] === 'callout') {
-      const printCode = `\n lea dx, string${this.strings.length} \n mov ah, 9 \n int 21h`
-      this.strings.push(node.value[1])
+      let printCode = ''
+      if (node.value[1][0] === '"') {
+        printCode = `\n lea dx, string${this.strings.length} \n mov ah, 9 \n int 21h`
+        this.strings.push(node.value[1])
+      } else {
+        printCode = `\n mov ri, '0' \n mov al, byte ptr ${node.value[1]} \n add ri, al \n mov dl, ri \n mov ah, 2 \n int 21h`
+      }
       return printCode
     } else {
       const call = `\n call ${node.value[0].value[0]}`
@@ -252,7 +257,7 @@ export class Codegen {
 
       callCode += call
 
-      return { code: [callCode], return: 'ax' }
+      return { code: [callCode], return: 'cx' }
     }
   }
 
