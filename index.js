@@ -104,13 +104,16 @@ function run (config) {
       console.log(tokens)
       break
     case 'parse':
-      const parse = new Parser(grammar, tokens)
-      const tree = new AST(parse.parse()).cleanTree()
-      // console.log(JSON.stringify(tree, null, 2))
-      const semCheck = new AST(tree).semCheck()
-      const codegen = new Codegen(tree)
+      // const parse = new Parser(grammar, tokens)
+      // const tree = new AST(parse.parse()).cleanTree()
+      // const semCheck = new AST(tree).semCheck()
+      // console.log(JSON.stringify(tree))
+      const codegen = new Codegen({"description":"class_decl","value":[{"value":"class","description":"class"},{"description":"location","value":[{"value":"Program","description":"identifier"}]},{"description":"method_decl","value":[{"value":"int ","description":"type"},{"description":"location","value":[{"value":"f","description":"identifier"}]},{"description":"param_decl","value":[{"value":"int ","description":"type"},{"description":"location","value":[{"value":"a","description":"identifier"}]}]},{"value":[{"value":"int ","description":"type"},{"description":"location","value":[{"value":"b","description":"identifier"}]}],"description":"param_decl"},{"description":"block","value":[{"description":"statement","value":[{"value":"return","description":"return"},{"description":"expr","value":[{"description":"location","value":[{"value":"a","description":"identifier"}]},{"description":"bin_op","value":[{"value":"+","description":"arith_op"}]},{"description":"location","value":[{"value":"b","description":"identifier"}]}]}]}]}]},{"description":"method_decl","value":[{"value":"void ","description":"type"},{"description":"location","value":[{"value":"main","description":"identifier"}]},{"description":"block","value":[{"description":"var_decl","value":[{"value":"int ","description":"type"},{"description":"location","value":[{"value":"a","description":"identifier"}]}]},{"description":"var_decl","value":[{"value":"int ","description":"type"},{"description":"location","value":[{"value":"b","description":"identifier"}]}]},{"description":"statement","value":[{"description":"location","value":[{"value":"a","description":"identifier"}]},{"value":"=","description":"assign_op"},{"value":"1","description":"int_lit"}]},{"description":"statement","value":[{"description":"location","value":[{"value":"b","description":"identifier"}]},{"value":"=","description":"assign_op"},{"value":"2","description":"int_lit"}]},{"description":"statement","value":[{"description":"location","value":[{"value":"a","description":"identifier"}]},{"value":"=","description":"assign_op"},{"description":"expr","value":[{"description":"expr","value":[{"description":"expr","value":[{"description":"location","value":[{"value":"a","description":"identifier"}]},{"description":"bin_op","value":[{"value":"+","description":"arith_op"}]},{"description":"location","value":[{"value":"b","description":"identifier"}]}]}]},{"description":"bin_op","value":[{"value":"+","description":"arith_op"}]},{"description":"location","value":[{"value":"a","description":"identifier"}]}]}]}]}]}]})
       codegen.AST = codegen.traverse()
+      // codegen.AST = [["\n f proc \n push bp \n mov bp, sp",[["\n mov ax, ",{"code":["\n mov ax, ","word ptr [bp + 4]","\n mov cx, ","word ptr [bp + 6]","\n add ax, cx","\n mov ","word ptr [bp + 4]",", ax"],"return":"word ptr [bp + 4]"},"\n jmp .012"],"\n .012:"],"\n pop bp \n ret 4 \n f endp"],["\n main proc \n push bp \n mov bp, sp","\n mov bx, 3000",["","",["\n mov ax, ","word ptr [bx - 4]","\n mov cx, ","2","\n mov ax, cx \n mov ","word ptr [bx - 4]",", ax"],["\n call f\n push 8\n push 7"],"\n .034:"],"\n mov ah,4CH \n int 21H","\n pop bp \n ret  \n main endp"]]
+      console.log(JSON.stringify(codegen.AST))
       codegen.AST = codegen.expressionReturn()
+      // console.log(JSON.stringify(codegen.AST))
       const code = codegen.heading(codegen.build())
 
       fs.writeFileSync(`${process.cwd()}\\bin.asm`, code)

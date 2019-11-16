@@ -3,7 +3,7 @@ export class Codegen {
     this.blocks = 0
     this.AST = this.setBlockID(AST)
     this.variables = ['']
-    this.params = ['']
+    this.params = ['', '']
     this.strings = []
   }
 
@@ -12,7 +12,14 @@ export class Codegen {
     for (const str in this.strings) {
       stringsCode += `\n string${str} db '${this.strings[str].substring(1, this.strings[str].length - 1)}', '$'`
     }
-    return `.model small \n .stack 200 \n .data ${stringsCode} \n .code \n mov ax, @data \n mov ds, ax \r\n ${code}`
+    return `.model small \n.stack 200 \n.data ${stringsCode} \n.code \n mov ax, @data \n mov ds, ax \n call main \r\n ${code}`
+  }
+
+  returnText (rtn) {
+    if (typeof rtn !== 'string') {
+      rtn = this.returnText(rtn.return)
+    }
+    return rtn
   }
 
   build (node = this.AST) {
@@ -39,7 +46,7 @@ export class Codegen {
     }
 
     for (const exp in expressions) {
-      const tempNode = this.expressionReturn(node[expressions[exp] + adder].code).concat(node)
+      const tempNode = node[expressions[exp] + adder].code.concat(node)
       adder += node[expressions[exp] + adder].code.length
       tempNode[expressions[exp] + adder] = tempNode[expressions[exp] + adder].return
       node = tempNode
@@ -133,24 +140,21 @@ export class Codegen {
             '/': function (x, y) { return x / y },
             '%': function (x, y) { return x % y }
           }
-          return operate[node.value[1]](node.value[0], node.value[2]).toString()
+          return operate[node.value[1]](parseInt(node.value[0]), parseInt(node.value[2])).toString()
         } else {
-          let code = ['\n mov ax, ', node.value[0], '\n mov cx, ', node.value[2]]
+          const code = ['\n mov ax, ', node.value[0], '\n mov cx, ', node.value[2]]
           const asm = {
             '+': '\n add ax, cx',
             '-': '\n sub ax, cx',
             '*': '\n mul cx',
             '/': '\n mov dx, 0 \n div cx',
-            '%': '\n mov dx, 0 \n div cx'
+            '%': '\n mov dx, 0 \n div cx \n mov ax, dx'
           }
 
           code.push(asm[node.value[1]])
+          code.push('\n mov cx, ax')
 
-          code.push('\n mov ')
-          code.push(node.value[0])
-          code.push(', ax')
-
-          return { code: code, return: node.value[0] }
+          return { code: this.expressionReturn(code), return: 'cx' }
         }
       } else {
         let code = ['\n mov ax, ', node.value[0], '\n mov cx, ', node.value[2], '\n cmp ax, cx']
@@ -238,8 +242,18 @@ export class Codegen {
       const printCode = `\n lea dx, string${this.strings.length} \n mov ah, 9 \n int 21h`
       this.strings.push(node.value[1])
       return printCode
+    } else {
+      const call = `\n call ${node.value[0].value[0]}`
+      let callCode = ''
+      node.value.splice(0, 1)
+      for (let i = 0; i < node.value.length; i++) {
+        callCode += `\n push ${node.value[i]}`
+      }
+
+      callCode += call
+
+      return { code: [callCode], return: 'ax' }
     }
-    return node
   }
 
   classDeclaration (node) {

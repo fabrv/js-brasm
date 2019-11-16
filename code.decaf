@@ -1,13 +1,14 @@
 class Program
 {
+    int f(int a, int b) {
+        return a + b;
+    }
+
     void main()
     {
-        for i = 0, i < 25
-        {
-            if(true){
-                break;
-            }
-        }
-        callout("\tThis is my program!\n"); 
+        int a, b;
+        a = 1;
+        b = 2;
+        a = (a + (b + 3)) + a;
     }
 }
