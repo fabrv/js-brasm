@@ -1,0 +1,18 @@
+class Program
+{
+    int sum(int a, int b) {
+        int i;
+        i = a + b;
+        return i;
+    }
+    void main()
+    {
+        //int x;
+        //x = f(0, 8) + 0;
+        int i;
+        i = sum(8, 3) + 0;
+
+        callout("Sum is: ");
+        callout(i);
+    }
+}

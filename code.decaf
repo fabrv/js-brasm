@@ -1,22 +1,26 @@
 class Program
 {
-    int f(int a, int b) {
-        int i;
-        int number;
-        number = 1;
-        for i = 0, i < b
-        {
-            number = number * a;
-            i = i + 1;
+    int f(int n, int b) {
+        int ret, i, o;
+        ret = b;
+        if (b < 2) {
+            return ret;
         }
-
-        return number;
+        i = ret - 1;
+        i = f(i, 0) + 0;
+        o = ret - 2;
+        o = f(o, 0) + 0;
+        i = i + o;
+        return i;
     }
     void main()
     {
-        int x;
-        x = f(2, 2) + 0;
-        callout("Resut: ");
-        callout(x);
+        //int x;
+        //x = f(0, 8) + 0;
+        int i;
+        i = f(2, 0) + 0;
+
+        callout("Fibonacci is: ");
+        callout(i);
     }
 }

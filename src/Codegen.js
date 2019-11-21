@@ -111,7 +111,7 @@ export class Codegen {
   }
 
   paramDeclaration (node) {
-    this.params.push(node.value[1].value[0] + node.scope[node.scope.length - 1])
+    this.params.splice(1, 0, node.value[1].value[0] + node.scope[node.scope.length - 1])
     return ''
   }
 
